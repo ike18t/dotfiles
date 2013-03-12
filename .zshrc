@@ -64,5 +64,3 @@ setopt hist_ignore_all_dups
 setopt hist_ignore_dups
 setopt hist_allow_clobber
 setopt hist_reduce_blanks
-
-bindkey -v
