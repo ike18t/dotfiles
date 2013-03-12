@@ -1,1 +1,2 @@
 alias grep='grep -v grep | grep --color=auto'
+alias brake='bundle exec rake'
