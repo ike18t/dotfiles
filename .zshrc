@@ -4,10 +4,12 @@ compinit
 export CLICOLOR=1
 export LSCOLORS=cxfxcxdxbxegedabagacad
 export RSENSE_HOME=~/.emacs.d/vendor/rsense-0.3/bin/rsense
-export GEM_HOME=~/.gem
-export GEM_PATH=$GEM_HOME/bin
+#export GEM_HOME=~/.gem
+#export GEM_PATH=$GEM_HOME/bin
 export HOMEBREW_SBIN
-export PATH=$PATH:$GEM_PATH:/usr/local/sbin
+export PATH=$HOME/.rbenv/bin:$HOME/.rbenv/shims:$PATH:/usr/local/sbin
+
+eval "$(rbenv init -)"
 
 git_prompt_info() {
 ref=$(git symbolic-ref HEAD 2> /dev/null) || return
