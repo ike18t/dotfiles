@@ -27,7 +27,7 @@ set ignorecase
 set smartcase
 
 let g:AckAllFiles = 0
-let g:AckCmd = 'ack --type-add ruby=.feature --ignore-dir=tmp 2> /dev/null'
+let g:AckCmd = 'ack --type-add ruby=.feature --ignore-dir=tmp --ignore-file=tags 2> /dev/null'
 
 let html_use_css=1
 let html_number_lines=0

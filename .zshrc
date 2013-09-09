@@ -43,10 +43,13 @@ ZSH_THEME="robbyrussell"
 plugins=(git)
 
 source $ZSH/oh-my-zsh.sh
+unsetopt correct_all
+setopt CORRECT
 
 # Customize to your needs...
 export HOMEBREW_SBIN
-export PATH=$PATH:$HOME/.rbenv/bin:$HOME/.rbenv/shims:$PATH:/usr/local/sbin:/usr/local/bin
+export PATH=$PATH:/usr/include:/usr/local/sbin
+export EDITOR=vim
 eval "$(rbenv init -)"
 
 source $HOME/.aliases
