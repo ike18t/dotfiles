@@ -27,7 +27,7 @@ set ignorecase
 set smartcase
 
 let g:AckAllFiles = 0
-let g:AckCmd = 'ack --type-add ruby=.feature --ignore-dir=tmp --ignore-file=tags 2> /dev/null'
+let g:AckCmd = 'ack --ruby 2> /dev/null'
 
 let html_use_css=1
 let html_number_lines=0
@@ -151,7 +151,7 @@ set undoreload=10000 "maximum number lines to save for undo on a buffer reload
 
 " ctrlp settings
 nnoremap <silent> <LocalLeader>pp :CtrlP<CR>
-let g:ctrlp_working_path_mode = 'ra'
+let g:ctrlp_working_path_mode = 'r'
 let g:ctrlp_custom_ignore = {
     \ 'dir':  '\v[\/]\.?(git|hg|svn|vendor|bundle)$',
     \ 'file': '\.pyc$\|\.pyo$\|\.rbc$|\.rbo$\|\.class$\|\.o$\|\~$\|^tags$',
@@ -160,3 +160,13 @@ let g:ctrlp_max_files = 0
 let g:ctrlp_switch_buffer = 1
 let g:ctrlp_max_height = 20
 let g:ctrlp_clear_cache_on_exit = 0
+
+function InsertTabWrapper()
+  let col = col('.') - 1
+  if !col || getline('.')[col - 1] !~ '\k'
+    return "\<tab>"
+  else
+    return "\<c-p>"
+  endif
+endfunction
+" inoremap <tab> <c-r>=InsertTabWrapper()<cr>
