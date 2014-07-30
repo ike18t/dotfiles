@@ -1,0 +1,6 @@
+let g:netrw_dirhistmax  =10
+let g:netrw_dirhist_cnt =4
+let g:netrw_dirhist_1='/Users/Ike/Projects/say_what/vendor/bundle/ruby/2.0.0/gems/jasmine-1.3.2'
+let g:netrw_dirhist_2='/Users/Ike/Projects/MingleCLI/vendor/bundle/ruby/2.0.0/bundler/gems/activeresource-db66c2ed2314'
+let g:netrw_dirhist_3='/Users/Ike/Projects/MingleCLI/vendor/bundle/ruby/2.0.0/bundler/gems/activeresource-485f4e5fb699'
+let g:netrw_dirhist_4='/Users/Ike/.vim/autoload'

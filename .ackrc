@@ -1,0 +1,10 @@
+--type-add
+ruby=.rake, .feature
+--type-set=html=.html.erb
+--type-set=haml=.haml
+--type-set=conf=.conf
+--type-set=coffee=.coffee
+--type-set=mustache=.mustache
+--type-set=ejs=.ejs
+--type-set=puppet=.pp
+--type-set=scss=.scss

@@ -14,7 +14,8 @@ set incsearch
 set background=dark
 set hidden
 set backspace=indent,eol,start
-set textwidth=0 nosmartindent tabstop=2 shiftwidth=2 softtabstop=2 expandtab
+set textwidth=0 nosmartindent tabstop=2 shiftwidth=2 softtabstop=2
+set expandtab
 set ruler
 set wrap
 set dir=/tmp//
@@ -27,7 +28,7 @@ set ignorecase
 set smartcase
 
 let g:AckAllFiles = 0
-let g:AckCmd = 'ack --ruby 2> /dev/null'
+let g:AckCmd = 'ack --type-add ruby=.feature --ignore-dir=tmp --ignore-dir=log 2> /dev/null'
 
 let html_use_css=1
 let html_number_lines=0
@@ -59,6 +60,7 @@ endfunction
 
 
 autocmd FileType ruby runtime ruby_mappings.vim
+autocmd FileType java runtime supertab.vim
 imap <C-L> <SPACE>=><SPACE>
 map <silent> <LocalLeader>cj :!clj %<CR>
 map <silent> <LocalLeader>rt :!/usr/local/bin/ctags -R --exclude=".git\|.svn\|log\|tmp\|db\|pkg" --extra=+f<CR>
@@ -153,8 +155,8 @@ set undoreload=10000 "maximum number lines to save for undo on a buffer reload
 nnoremap <silent> <LocalLeader>pp :CtrlP<CR>
 let g:ctrlp_working_path_mode = 'r'
 let g:ctrlp_custom_ignore = {
-    \ 'dir':  '\v[\/]\.?(git|hg|svn|vendor|bundle)$',
-    \ 'file': '\.pyc$\|\.pyo$\|\.rbc$|\.rbo$\|\.class$\|\.o$\|\~$\|^tags$',
+    \ 'dir':  '\v[\/]\.?(git|hg|svn|vendor|bundle|tmp)$',
+    \ 'file': '\.pyc$\|\.pyo$\|\.rbc$|\.rbo$\|\.class$\|\.o$\|\~$\|^tags$|\.keep$',
     \ }
 let g:ctrlp_max_files = 0
 let g:ctrlp_switch_buffer = 1

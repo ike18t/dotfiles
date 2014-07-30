@@ -1,4 +1,5 @@
 alias grep='grep -v grep | grep --color=auto'
 alias brake='bundle exec rake'
+alias brails='bundle exec rails'
 alias be='bundle exec'
 alias updatedb='sudo /usr/libexec/locate.updatedb'
