@@ -34,9 +34,6 @@ let html_use_css=1
 let html_number_lines=0
 let html_no_pre=1
 
-let g:gist_clip_command = 'pbcopy'
-let g:gist_detect_filetype = 1
-
 let g:rubycomplete_buffer_loading = 1
 
 let g:no_html_toolbar = 'yes'
@@ -133,19 +130,6 @@ set statusline+=%10(L(%l/%L)%)\           " line
 set statusline+=%2(C(%v/125)%)\           " column
 set statusline+=%P                        " percentage of file
 
-" http://techspeak.plainlystated.com/2009/08/vim-tohtml-customization.html
-function! DivHtml(line1, line2)
-  exec a:line1.','.a:line2.'TOhtml'
-  %g/<style/normal $dgg
-  %s/<\/style>\n<\/head>\n//
-  %s/body {/.vim_block {/
-  %s/<bods\(.*\)>\n/<div class="vim_block"\1>/
-  %s/<\/body>\n<\/html>/<\/div>
-  "%s/\n/<br \/>\r/g
-
-  set nonu
-endfunction
-command! -range=% DivHtml :call DivHtml(<line1>,<line2>)
 set undodir=~/.vim/undo
 set undofile
 set undolevels=1000 "maximum number of changes that can be undone
