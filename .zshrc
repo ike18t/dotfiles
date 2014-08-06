@@ -50,7 +50,6 @@ setopt CORRECT
 export HOMEBREW_SBIN
 export PATH=$PATH:/usr/include:/usr/local/sbin
 export EDITOR=vim
-export ECLIPSE_HOME=/Applications/eclipse
 eval "$(rbenv init -)"
 
 source $HOME/.aliases
