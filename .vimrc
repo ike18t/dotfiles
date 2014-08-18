@@ -87,7 +87,6 @@ nnoremap <silent> <LocalLeader>ww :%s/\s\+$//<CR>:let @/=''<CR><C-o>
 nnoremap <F1> <ESC>
 vnoremap <F1> <ESC>
 inoremap <F1> <ESC>
-inoremap jj <ESC>
 
 " vimux commands
 map <Leader>vq :VimuxCloseRunner<CR>
