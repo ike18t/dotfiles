@@ -8,3 +8,7 @@ ruby=.rake, .feature
 --type-set=ejs=.ejs
 --type-set=puppet=.pp
 --type-set=scss=.scss
+--ignore-file=is:tags
+--ignore-directory=is:vendor
+--ignore-directory=is:public/assets
+--ignore-directory=is:log

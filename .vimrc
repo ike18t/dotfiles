@@ -2,8 +2,57 @@ set nocompatible
 syntax on
 
 filetype off
-call pathogen#runtime_append_all_bundles()
-filetype plugin indent on
+
+" set the runtime path to include Vundle and initialize
+set rtp+=~/.vim/bundle/Vundle.vim
+call vundle#begin()
+" alternatively, pass a path where Vundle should install plugins
+"call vundle#begin('~/some/path/here')
+
+" let Vundle manage Vundle, required
+Plugin 'gmarik/Vundle.vim'
+Plugin 'kien/ctrlp.vim'
+Plugin 'ervandew/supertab'
+Plugin 'mileszs/ack.vim'
+Plugin 'vim-scripts/Align'
+Plugin 'jlanzarotta/bufexplorer'
+Plugin 'bkad/CamelCaseMotion'
+Plugin 'rizzatti/dash.vim'
+Plugin 'tpope/vim-markdown'
+Plugin 'scrooloose/nerdtree'
+Plugin 'scrooloose/syntastic'
+Plugin 'mkitt/tabline.vim'
+Plugin 'tomtom/tcomment_vim'
+Plugin 'vim-ruby/vim-ruby'
+Plugin 'benmills/vimux'
+Plugin 'pgr0ss/vimux-ruby-test'
+Plugin 'tpope/vim-surround'
+Plugin 'tpope/vim-fugitive'
+Plugin 'kchmck/vim-coffee-script'
+Plugin 'tpope/vim-cucumber'
+Plugin 'pangloss/vim-javascript'
+Plugin 'tpope/vim-endwise'
+Plugin 'tpope/vim-ragtag'
+Plugin 'tpope/vim-rails'
+Plugin 'tpope/vim-repeat'
+Plugin 'mhinz/vim-signify'
+"color_schemes
+"Plugin 'tpope/vim-bundler'
+
+" All of your Plugins must be added before the following line
+call vundle#end()            " required
+filetype plugin indent on    " required
+" To ignore plugin indent changes, instead use:
+"filetype plugin on
+"
+" Brief help
+" :PluginList       - lists configured plugins
+" :PluginInstall    - installs plugins; append `!` to update or just :PluginUpdate
+" :PluginSearch foo - searches for foo; append `!` to refresh local cache
+" :PluginClean      - confirms removal of unused plugins; append `!` to auto-approve removal
+"
+" see :h vundle for more details or wiki for FAQ
+" Put your non-Plugin stuff after this line
 
 compiler ruby
 
@@ -57,7 +106,6 @@ endfunction
 
 
 autocmd FileType ruby runtime ruby_mappings.vim
-autocmd FileType java runtime supertab.vim
 imap <C-L> <SPACE>=><SPACE>
 map <silent> <LocalLeader>cj :!clj %<CR>
 map <silent> <LocalLeader>rt :!/usr/local/bin/ctags -R --exclude=".git\|.svn\|log\|tmp\|db\|pkg" --extra=+f<CR>
@@ -117,6 +165,10 @@ autocmd ColorScheme * highlight LineLengthError ctermbg=black guibg=black
 
 " Comment colors
 highlight Comment ctermfg=DarkMagenta
+highlight clear SignColumn
+highlight SignifySignAdd    cterm=bold ctermfg=119
+highlight SignifySignDelete cterm=bold ctermfg=167
+highlight SignifySignChange cterm=bold ctermfg=227
 
 set laststatus=2
 set statusline=
@@ -145,6 +197,8 @@ let g:ctrlp_max_files = 0
 let g:ctrlp_switch_buffer = 1
 let g:ctrlp_max_height = 20
 let g:ctrlp_clear_cache_on_exit = 0
+
+let NERDTreeShowHidden=1
 
 function InsertTabWrapper()
   let col = col('.') - 1

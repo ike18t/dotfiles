@@ -55,3 +55,6 @@ eval "$(rbenv init -)"
 source $HOME/.aliases
 export PATH="$HOME/.jenv/bin:$PATH"
 eval "$(jenv init -)"
+
+export ANDROID_HOME=/Users/Ike/Development/android-sdks
+export PATH=$PATH:$ANDROID_HOME:$ANDROID_HOME/tools:$ANDROID_HOME/platform-tools
