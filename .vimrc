@@ -36,6 +36,7 @@ Plugin 'tpope/vim-ragtag'
 Plugin 'tpope/vim-rails'
 Plugin 'tpope/vim-repeat'
 Plugin 'mhinz/vim-signify'
+Plugin 'rodjek/vim-puppet'
 "color_schemes
 "Plugin 'tpope/vim-bundler'
 
@@ -77,12 +78,13 @@ set ignorecase
 set smartcase
 
 let g:AckAllFiles = 0
-let g:AckCmd = 'ack --type-add ruby=.feature --ignore-dir=tmp --ignore-dir=log 2> /dev/null'
+let g:AckCmd = 'ag --type-add ruby=.feature --ignore-dir=tmp --ignore-dir=log 2> /dev/null'
 
 let html_use_css=1
 let html_number_lines=0
 let html_no_pre=1
 
+let g:ruby_path='/Users/ike/.rbenv/versions/2.2.0'
 let g:rubycomplete_buffer_loading = 1
 
 let g:no_html_toolbar = 'yes'
@@ -190,7 +192,7 @@ set undoreload=10000 "maximum number lines to save for undo on a buffer reload
 nnoremap <silent> <LocalLeader>pp :CtrlP<CR>
 let g:ctrlp_working_path_mode = 'r'
 let g:ctrlp_custom_ignore = {
-    \ 'dir':  '\v[\/]\.?(git|hg|svn|vendor|bundle|tmp)$',
+    \ 'dir':  '\v[\/]\.?(git|hg|svn|vendor|bundle|tmp|public)$',
     \ 'file': '\.pyc$\|\.pyo$\|\.rbc$|\.rbo$\|\.class$\|\.o$\|\~$\|^tags$|\.keep$',
     \ }
 let g:ctrlp_max_files = 0

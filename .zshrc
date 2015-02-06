@@ -58,3 +58,6 @@ eval "$(jenv init -)"
 
 export ANDROID_HOME=/Users/Ike/Development/android-sdks
 export PATH=$PATH:$ANDROID_HOME:$ANDROID_HOME/tools:$ANDROID_HOME/platform-tools
+
+set -o vi
+bindkey '^R' history-incremental-search-backward
