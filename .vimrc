@@ -1,60 +1,3 @@
-set nocompatible
-syntax on
-
-filetype off
-
-" set the runtime path to include Vundle and initialize
-set rtp+=~/.vim/bundle/Vundle.vim
-call vundle#begin()
-" alternatively, pass a path where Vundle should install plugins
-"call vundle#begin('~/some/path/here')
-
-" let Vundle manage Vundle, required
-Plugin 'gmarik/Vundle.vim'
-Plugin 'kien/ctrlp.vim'
-Plugin 'ervandew/supertab'
-Plugin 'mileszs/ack.vim'
-Plugin 'vim-scripts/Align'
-Plugin 'jlanzarotta/bufexplorer'
-Plugin 'bkad/CamelCaseMotion'
-Plugin 'rizzatti/dash.vim'
-Plugin 'tpope/vim-markdown'
-Plugin 'scrooloose/nerdtree'
-Plugin 'scrooloose/syntastic'
-Plugin 'mkitt/tabline.vim'
-Plugin 'tomtom/tcomment_vim'
-Plugin 'vim-ruby/vim-ruby'
-Plugin 'benmills/vimux'
-Plugin 'pgr0ss/vimux-ruby-test'
-Plugin 'tpope/vim-surround'
-Plugin 'tpope/vim-fugitive'
-Plugin 'kchmck/vim-coffee-script'
-Plugin 'tpope/vim-cucumber'
-Plugin 'pangloss/vim-javascript'
-Plugin 'tpope/vim-endwise'
-Plugin 'tpope/vim-ragtag'
-Plugin 'tpope/vim-rails'
-Plugin 'tpope/vim-repeat'
-Plugin 'mhinz/vim-signify'
-Plugin 'rodjek/vim-puppet'
-"color_schemes
-"Plugin 'tpope/vim-bundler'
-
-" All of your Plugins must be added before the following line
-call vundle#end()            " required
-filetype plugin indent on    " required
-" To ignore plugin indent changes, instead use:
-"filetype plugin on
-"
-" Brief help
-" :PluginList       - lists configured plugins
-" :PluginInstall    - installs plugins; append `!` to update or just :PluginUpdate
-" :PluginSearch foo - searches for foo; append `!` to refresh local cache
-" :PluginClean      - confirms removal of unused plugins; append `!` to auto-approve removal
-"
-" see :h vundle for more details or wiki for FAQ
-" Put your non-Plugin stuff after this line
-
 compiler ruby
 
 set hlsearch
@@ -62,6 +5,7 @@ set number
 set showmatch
 set incsearch
 set background=dark
+set noshowmode
 set hidden
 set backspace=indent,eol,start
 set textwidth=0 nosmartindent tabstop=2 shiftwidth=2 softtabstop=2
@@ -70,12 +14,34 @@ set ruler
 set wrap
 set dir=/tmp//
 set scrolloff=5
+set autowrite
+set nobackup
+set nowritebackup
+set noswapfile
+set showcmd       " display incomplete commands
+set history=20
 
 set foldmethod=manual
 set foldlevelstart=20
 
 set ignorecase
 set smartcase
+
+" Switch syntax highlighting on, when the terminal has colors
+" Also switch on highlighting the last used search pattern.
+if (&t_Co > 2 || has("gui_running")) && !exists("syntax_on")
+  syntax on
+endif
+
+if filereadable(expand("~/.vimrc.bundles"))
+  source ~/.vimrc.bundles
+endif
+filetype plugin indent on
+
+let g:airline#extensions#tabline#enabled = 1
+let g:airline#extensions#tabline#tab_nr_type = 1
+let g:airline_powerline_fonts = 1
+let g:airline_theme = 'simple'
 
 let g:AckAllFiles = 0
 let g:AckCmd = 'ag --type-add ruby=.feature --ignore-dir=tmp --ignore-dir=log 2> /dev/null'
@@ -90,27 +56,12 @@ let g:rubycomplete_buffer_loading = 1
 let g:no_html_toolbar = 'yes'
 
 let coffee_no_trailing_space_error = 1
-
-autocmd FileType php setlocal tabstop=4 shiftwidth=4 softtabstop=4
-autocmd FileType python setlocal tabstop=4 shiftwidth=4 softtabstop=4
-
-autocmd FileType tex setlocal textwidth=78
-autocmd BufNewFile,BufRead *.txt setlocal textwidth=78
-
-" toggle relative number
-function! ToggleRelativeNumber()
-  if &relativenumber
-    set number
-  else
-    set relativenumber
-  endif
-endfunction
-
+let g:easytags_autorecurse = 1
 
 autocmd FileType ruby runtime ruby_mappings.vim
 imap <C-L> <SPACE>=><SPACE>
 map <silent> <LocalLeader>cj :!clj %<CR>
-map <silent> <LocalLeader>rt :!/usr/local/bin/ctags -R --exclude=".git\|.svn\|log\|tmp\|db\|pkg" --extra=+f<CR>
+"map <silent> <LocalLeader>rt :!ctags -R --exclude=.git --exclude=.svn --exclude=log --exclude=tmp --exclude=db --exclude=pkg --exclude=spec/javascripts/helpers/jasmine-jquery.js --exclude=vendor/bundle/jruby/1.9/gems --extra=+f<CR>
 map <silent> <LocalLeader>nt :NERDTreeToggle<CR>
 map <silent> <LocalLeader>nr :NERDTree<CR>
 map <silent> <LocalLeader>nf :NERDTreeFind<CR>
@@ -126,21 +77,23 @@ map <LocalLeader>aw :Ack '<C-R><C-W>'
 map <silent> <LocalLeader>bd :bufdo :bd<CR>
 map <silent> <LocalLeader>cc :TComment<CR>
 map <silent> <LocalLeader>uc :TComment<CR>
-nnoremap <silent> <LocalLeader>rr :call ToggleRelativeNumber()<cr>
-nnoremap <silent> <LocalLeader>ee :tabe $MYVIMRC<CR>
-nnoremap <silent> <LocalLeader>ss :source $MYVIMRC<CR>
 nnoremap <silent> <LocalLeader><CR> :tabe<CR>
 nnoremap <silent> <LocalLeader>[ :tabp<CR>
 nnoremap <silent> <LocalLeader>] :tabn<CR>
 nnoremap <silent> <LocalLeader><Space> :noh<CR>
 nnoremap <silent> <LocalLeader>ww :%s/\s\+$//<CR>:let @/=''<CR><C-o>
+inoremap jj <ESC>
 nnoremap <F1> <ESC>
 vnoremap <F1> <ESC>
 inoremap <F1> <ESC>
 
 " vimux commands
 map <Leader>vq :VimuxCloseRunner<CR>
-map <Leader>rl :wa<CR> :VimuxRunLastCommand<CR>
+map <Leader>vq :VimuxCloseRunner<CR>
+map <silent> <Leader>rb :wa<CR> :RunAllRubyTests<CR>
+map <silent> <Leader>rc :wa<CR> :RunRubyFocusedContext<CR>
+map <silent> <Leader>rf :wa<CR> :RunRubyFocusedTest<CR>
+map <silent> <Leader>rl :wa<CR> :VimuxRunLastCommand<CR>
 
 cnoremap <Tab> <C-L><C-D>
 cnoreabbrev W w
@@ -155,6 +108,7 @@ colorscheme slate
 " Highlight trailing whitespace
 autocmd InsertEnter * match ExtraWhitespace /\s\+\%#\@<!$/
 autocmd BufRead,InsertLeave * match ExtraWhitespace /\s\+$/
+
 " Set up highlight group & retain through colorscheme changes
 highlight ExtraWhitespace ctermbg=red guibg=red
 autocmd ColorScheme * highlight ExtraWhitespace ctermbg=red guibg=red
@@ -199,10 +153,37 @@ let g:ctrlp_max_files = 0
 let g:ctrlp_switch_buffer = 1
 let g:ctrlp_max_height = 20
 let g:ctrlp_clear_cache_on_exit = 0
+if executable('ag')
+  " Use ag in CtrlP for listing files. Lightning fast and respects .gitignore
+  let g:ctrlp_user_command = 'ag %s -l --nocolor --hidden -g ""'
 
+  " ag is fast enough that CtrlP doesn't need to cache
+  let g:ctrlp_use_caching = 0
+endif
+
+" nerdtree settings
 let NERDTreeShowHidden=1
 
-function InsertTabWrapper()
+autocmd FocusLost * stopinsert
+autocmd VimResized * :wincmd = " auto resize vim when the window is resized
+
+let g:easytags_async = 1
+
+" toggle relative number
+function! ToggleRelativeNumber()
+  if &relativenumber
+    set relativenumber!
+  else
+    set relativenumber
+  endif
+endfunction
+nnoremap <silent> <LocalLeader>rr :call ToggleRelativeNumber()<cr>
+
+" Tab completion
+" will insert tab at beginning of line,
+" will use completion if not at beginning
+set wildmode=list:longest,list:full
+function! InsertTabWrapper()
   let col = col('.') - 1
   if !col || getline('.')[col - 1] !~ '\k'
     return "\<tab>"
@@ -210,4 +191,25 @@ function InsertTabWrapper()
     return "\<c-p>"
   endif
 endfunction
-" inoremap <tab> <c-r>=InsertTabWrapper()<cr>
+inoremap <Tab> <c-r>=InsertTabWrapper()<cr>
+inoremap <S-Tab> <c-n>
+
+" Get off my lawn
+nnoremap <Left> :echoe "Use h"<CR>
+nnoremap <Right> :echoe "Use l"<CR>
+nnoremap <Up> :echoe "Use k"<CR>
+nnoremap <Down> :echoe "Use j"<CR>
+
+" Open new split panes to right and bottom, which feels more natural
+set splitbelow
+set splitright
+
+" Quicker window movement
+nnoremap <C-j> <C-w>j
+nnoremap <C-k> <C-w>k
+nnoremap <C-h> <C-w>h
+nnoremap <C-l> <C-w>l
+
+" configure syntastic syntax checking to check on open as well as save
+let g:syntastic_check_on_open=1
+let g:syntastic_html_tidy_ignore_errors=[" proprietary attribute \"ng-"]

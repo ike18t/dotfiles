@@ -1,0 +1,46 @@
+if &compatible
+  set nocompatible
+end
+
+filetype off
+set rtp+=~/.vim/bundle/Vundle.vim/
+call vundle#begin()
+
+" Let Vundle manage Vundle
+Plugin 'gmarik/Vundle.vim'
+
+" Define bundles via Github repos
+Plugin 'kien/ctrlp.vim'
+Plugin 'ervandew/supertab'
+Plugin 'mileszs/ack.vim'
+Plugin 'vim-scripts/Align'
+Plugin 'jlanzarotta/bufexplorer'
+Plugin 'bkad/CamelCaseMotion'
+Plugin 'rizzatti/dash.vim'
+Plugin 'tpope/vim-markdown'
+Plugin 'scrooloose/nerdtree'
+Plugin 'scrooloose/syntastic'
+Plugin 'mkitt/tabline.vim'
+Plugin 'tomtom/tcomment_vim'
+Plugin 'vim-ruby/vim-ruby'
+Plugin 'benmills/vimux'
+Plugin 'pgr0ss/vimux-ruby-test'
+Plugin 'tpope/vim-surround'
+Plugin 'tpope/vim-fugitive'
+Plugin 'kchmck/vim-coffee-script'
+Plugin 'tpope/vim-cucumber'
+Plugin 'pangloss/vim-javascript'
+Plugin 'tpope/vim-endwise'
+Plugin 'tpope/vim-ragtag'
+Plugin 'tpope/vim-rails'
+Plugin 'tpope/vim-repeat'
+Plugin 'mhinz/vim-signify'
+Plugin 'rodjek/vim-puppet'
+Plugin 'bling/vim-airline'
+Plugin 'tmux-plugins/vim-tmux-focus-events'
+Plugin 'xolox/vim-misc'
+Plugin 'vim-scripts/easytags.vim'
+Plugin 'wesQ3/vim-windowswap'
+
+call vundle#end()
+filetype on
