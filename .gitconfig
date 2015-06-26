@@ -1,0 +1,18 @@
+[alias]
+  co = checkout
+  st = status
+[color]
+	ui = auto
+  pager = true
+[color "status"]
+  added = yellow
+  changed = green
+  untracked = cyan
+[format]
+  pretty = format:"%h %C(yellow)%ci%Creset %Cgreen%an%Creset | %s"
+
+[user]
+	name = Isaac Datlof
+	email = ike18t@gmail.com
+[push]
+	default = simple
