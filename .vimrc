@@ -56,7 +56,6 @@ let g:rubycomplete_buffer_loading = 1
 let g:no_html_toolbar = 'yes'
 
 let coffee_no_trailing_space_error = 1
-let g:easytags_autorecurse = 1
 
 autocmd FileType ruby runtime ruby_mappings.vim
 imap <C-L> <SPACE>=><SPACE>
@@ -167,7 +166,11 @@ let NERDTreeShowHidden=1
 autocmd FocusLost * stopinsert
 autocmd VimResized * :wincmd = " auto resize vim when the window is resized
 
+set tags=./tags;
+let g:easytags_dynamic_files = 2
+let g:easytags_autorecurse = 1
 let g:easytags_async = 1
+let g:easytags_auto_highlight = 0
 
 " toggle relative number
 function! ToggleRelativeNumber()
