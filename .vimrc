@@ -54,16 +54,20 @@ let g:no_html_toolbar = 'yes'
 
 let coffee_no_trailing_space_error = 1
 
-set tags=./tags;
-let g:easytags_dynamic_files = 2
+" EasyTags
+set cpoptions+=d
+let g:easytags_file = './tags'
 let g:easytags_autorecurse = 1
-let g:easytags_async = 1
+let g:easytags_events = ['BufReadPost', 'BufWritePost']
+let g:easytags_dynamic_files = 2
+let g:easytags_resolve_links = 1
+let g:easytags_suppress_report = 1
 let g:easytags_auto_highlight = 0
 
 autocmd FileType ruby runtime ruby_mappings.vim
 imap <C-L> <SPACE>=><SPACE>
 map <silent> <LocalLeader>cj :!clj %<CR>
-"map <silent> <LocalLeader>rt :!ctags -R --exclude=.git --exclude=.svn --exclude=log --exclude=tmp --exclude=db --exclude=pkg --exclude=spec/javascripts/helpers/jasmine-jquery.js --exclude=vendor/bundle/jruby/1.9/gems --extra=+f<CR>
+map <silent> <LocalLeader>rt :!ctags -R --exclude=.git --exclude=.svn --exclude=log --exclude=tmp --exclude=db --exclude=pkg --exclude=spec/javascripts/helpers/jasmine-jquery.js --exclude=vendor/bundle/jruby/1.9/gems --extra=+f<CR>
 map <silent> <LocalLeader>nt :NERDTreeToggle<CR>
 map <silent> <LocalLeader>nr :NERDTree<CR>
 map <silent> <LocalLeader>nf :NERDTreeFind<CR>
