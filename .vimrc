@@ -43,9 +43,6 @@ let g:airline#extensions#tabline#tab_nr_type = 1
 let g:airline_powerline_fonts = 1
 let g:airline_theme = 'simple'
 
-let g:AckAllFiles = 0
-let g:AckCmd = 'ag --type-add ruby=.feature --ignore-dir=tmp --ignore-dir=log 2> /dev/null'
-
 let html_use_css=1
 let html_number_lines=0
 let html_no_pre=1
@@ -56,6 +53,12 @@ let g:rubycomplete_buffer_loading = 1
 let g:no_html_toolbar = 'yes'
 
 let coffee_no_trailing_space_error = 1
+
+set tags=./tags;
+let g:easytags_dynamic_files = 2
+let g:easytags_autorecurse = 1
+let g:easytags_async = 1
+let g:easytags_auto_highlight = 0
 
 autocmd FileType ruby runtime ruby_mappings.vim
 imap <C-L> <SPACE>=><SPACE>
@@ -72,7 +75,7 @@ map <silent> <LocalLeader>gd :e product_diff.diff<CR>:%!git diff<CR>:setlocal bu
 map <silent> <LocalLeader>pd :e product_diff.diff<CR>:%!svn diff<CR>:setlocal buftype=nowrite<CR>
 map <silent> <LocalLeader>nh :nohls<CR>
 map <silent> <LocalLeader>yr :YRShow<CR>
-map <LocalLeader>aw :Ack '<C-R><C-W>'
+map <silent> <LocalLeader>g :grep! "\b<C-R><C-W>\b"<CR>:cw<CR>
 map <silent> <LocalLeader>bd :bufdo :bd<CR>
 map <silent> <LocalLeader>cc :TComment<CR>
 map <silent> <LocalLeader>uc :TComment<CR>
@@ -153,6 +156,9 @@ let g:ctrlp_switch_buffer = 1
 let g:ctrlp_max_height = 20
 let g:ctrlp_clear_cache_on_exit = 0
 if executable('ag')
+  " Use Ag over Grep
+  set grepprg=ag\ --nogroup\ --nocolor
+
   " Use ag in CtrlP for listing files. Lightning fast and respects .gitignore
   let g:ctrlp_user_command = 'ag %s -l --nocolor --hidden -g ""'
 
@@ -165,12 +171,6 @@ let NERDTreeShowHidden=1
 
 autocmd FocusLost * stopinsert
 autocmd VimResized * :wincmd = " auto resize vim when the window is resized
-
-set tags=./tags;
-let g:easytags_dynamic_files = 2
-let g:easytags_autorecurse = 1
-let g:easytags_async = 1
-let g:easytags_auto_highlight = 0
 
 " toggle relative number
 function! ToggleRelativeNumber()
@@ -216,3 +216,6 @@ nnoremap <C-l> <C-w>l
 " configure syntastic syntax checking to check on open as well as save
 let g:syntastic_check_on_open=1
 let g:syntastic_html_tidy_ignore_errors=[" proprietary attribute \"ng-"]
+
+" bind Ag command
+command! -nargs=+ -complete=file -bar Ag silent! grep! <args>|cwindow|redraw!

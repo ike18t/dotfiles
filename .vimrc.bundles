@@ -12,7 +12,6 @@ Plugin 'gmarik/Vundle.vim'
 " Define bundles via Github repos
 Plugin 'kien/ctrlp.vim'
 Plugin 'ervandew/supertab'
-Plugin 'mileszs/ack.vim'
 Plugin 'vim-scripts/Align'
 Plugin 'jlanzarotta/bufexplorer'
 Plugin 'bkad/CamelCaseMotion'
