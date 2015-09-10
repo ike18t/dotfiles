@@ -40,6 +40,7 @@ Plugin 'tmux-plugins/vim-tmux-focus-events'
 Plugin 'xolox/vim-misc'
 Plugin 'vim-scripts/easytags.vim'
 Plugin 'wesQ3/vim-windowswap'
+Plugin 'gosukiwi/vim-atom-dark'
 
 call vundle#end()
 filetype on

@@ -79,7 +79,7 @@ map <silent> <LocalLeader>gd :e product_diff.diff<CR>:%!git diff<CR>:setlocal bu
 map <silent> <LocalLeader>pd :e product_diff.diff<CR>:%!svn diff<CR>:setlocal buftype=nowrite<CR>
 map <silent> <LocalLeader>nh :nohls<CR>
 map <silent> <LocalLeader>yr :YRShow<CR>
-map <silent> <LocalLeader>g :grep! "\b<C-R><C-W>\b"<CR>:cw<CR>
+nnoremap <silent> <LocalLeader>g :grep! "<C-R><C-W>"<CR>:cw<CR>
 map <silent> <LocalLeader>bd :bufdo :bd<CR>
 map <silent> <LocalLeader>cc :TComment<CR>
 map <silent> <LocalLeader>uc :TComment<CR>
@@ -109,7 +109,7 @@ if version >= 700
     autocmd FileType tex setlocal spell spelllang=en_us
 endif
 
-colorscheme slate
+colorscheme atom-dark-256
 
 " Highlight trailing whitespace
 autocmd InsertEnter * match ExtraWhitespace /\s\+\%#\@<!$/
@@ -161,10 +161,15 @@ let g:ctrlp_max_height = 20
 let g:ctrlp_clear_cache_on_exit = 0
 if executable('ag')
   " Use Ag over Grep
-  set grepprg=ag\ --nogroup\ --nocolor
+  set grepprg=ag\ -o\ --nogroup\ --vimgrep\ --nocolor\ --hidden\ --ignore\ .git\ --ignore\ tags\ --ignore\ .bundle\ --ignore\ tmp\ --ignore\ vendor
 
   " Use ag in CtrlP for listing files. Lightning fast and respects .gitignore
-  let g:ctrlp_user_command = 'ag %s -l --nocolor --hidden -g ""'
+  let g:ctrlp_user_command = 'ag %s -l --nocolor --hidden --ignore vendor
+                                                          \ --ignore tmp
+                                                          \ --ignore tags
+                                                          \ --ignore .git
+                                                          \ --ignore .bundle
+                                                          \ -g ""'
 
   " ag is fast enough that CtrlP doesn't need to cache
   let g:ctrlp_use_caching = 0
