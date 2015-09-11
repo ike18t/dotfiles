@@ -161,15 +161,12 @@ let g:ctrlp_max_height = 20
 let g:ctrlp_clear_cache_on_exit = 0
 if executable('ag')
   " Use Ag over Grep
-  set grepprg=ag\ -o\ --nogroup\ --vimgrep\ --nocolor\ --hidden\ --ignore\ .git\ --ignore\ tags\ --ignore\ .bundle\ --ignore\ tmp\ --ignore\ vendor
+  set grepprg=ag\ -o\ --nogroup\ --vimgrep\ --nocolor\ --hidden\ --ignore\ .git\ --ignore\ vendor
 
   " Use ag in CtrlP for listing files. Lightning fast and respects .gitignore
   let g:ctrlp_user_command = 'ag %s -l --nocolor --hidden --ignore vendor
-                                                          \ --ignore tmp
-                                                          \ --ignore tags
-                                                          \ --ignore .git
-                                                          \ --ignore .bundle
-                                                          \ -g ""'
+                                                        \ --ignore .git
+                                                        \ -g ""'
 
   " ag is fast enough that CtrlP doesn't need to cache
   let g:ctrlp_use_caching = 0
@@ -205,12 +202,6 @@ function! InsertTabWrapper()
 endfunction
 inoremap <Tab> <c-r>=InsertTabWrapper()<cr>
 inoremap <S-Tab> <c-n>
-
-" Get off my lawn
-nnoremap <Left> :echoe "Use h"<CR>
-nnoremap <Right> :echoe "Use l"<CR>
-nnoremap <Up> :echoe "Use k"<CR>
-nnoremap <Down> :echoe "Use j"<CR>
 
 " Open new split panes to right and bottom, which feels more natural
 set splitbelow
