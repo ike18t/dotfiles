@@ -79,7 +79,7 @@ map <silent> <LocalLeader>gd :e product_diff.diff<CR>:%!git diff<CR>:setlocal bu
 map <silent> <LocalLeader>pd :e product_diff.diff<CR>:%!svn diff<CR>:setlocal buftype=nowrite<CR>
 map <silent> <LocalLeader>nh :nohls<CR>
 map <silent> <LocalLeader>yr :YRShow<CR>
-nnoremap <silent> <LocalLeader>g :grep! "<C-R><C-W>"<CR>:cw<CR>
+nnoremap <silent> <LocalLeader>ag :grep! "<C-R><C-W>"<CR>:cw<CR>
 map <silent> <LocalLeader>bd :bufdo :bd<CR>
 map <silent> <LocalLeader>cc :TComment<CR>
 map <silent> <LocalLeader>uc :TComment<CR>
@@ -112,12 +112,8 @@ endif
 colorscheme atom-dark-256
 
 " Highlight trailing whitespace
-autocmd InsertEnter * match ExtraWhitespace /\s\+\%#\@<!$/
-autocmd BufRead,InsertLeave * match ExtraWhitespace /\s\+$/
-
-" Set up highlight group & retain through colorscheme changes
-highlight ExtraWhitespace ctermbg=red guibg=red
-autocmd ColorScheme * highlight ExtraWhitespace ctermbg=red guibg=red
+:highlight ExtraWhitespace ctermbg=red guibg=red
+:match ExtraWhitespace /\s\+$/
 map <silent> <LocalLeader>ws :highlight clear ExtraWhitespace<CR>
 
 " Highlight too-long lines
@@ -174,6 +170,7 @@ endif
 
 " nerdtree settings
 let NERDTreeShowHidden=1
+let NERDTreeIgnore = ['.bundle', '.git', '.DS_Store', 'tags']
 
 autocmd FocusLost * stopinsert
 autocmd VimResized * :wincmd = " auto resize vim when the window is resized
