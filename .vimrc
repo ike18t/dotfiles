@@ -94,8 +94,8 @@ vnoremap <F1> <ESC>
 inoremap <F1> <ESC>
 
 " vimux commands
-map <Leader>vq :VimuxCloseRunner<CR>
-map <Leader>vq :VimuxCloseRunner<CR>
+map <Leader>vq :VimuxTogglePane<CR>
+map <Leader>vz :VimuxZoomRunner<CR>
 map <silent> <Leader>rb :wa<CR> :RunAllRubyTests<CR>
 map <silent> <Leader>rc :wa<CR> :RunRubyFocusedContext<CR>
 map <silent> <Leader>rf :wa<CR> :RunRubyFocusedTest<CR>
