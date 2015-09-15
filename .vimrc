@@ -93,13 +93,17 @@ nnoremap <F1> <ESC>
 vnoremap <F1> <ESC>
 inoremap <F1> <ESC>
 
+let test#javascript#jasmine#executable = 'RAILS_ENV=test bundle exec rake spec:javascript'
+let test#javascript#jasmine#file_pattern = '\v^spec/.*spec(\.js)?\.(js|jsx|coffee)$'
+let test#strategy = "vimux"
+
 " vimux commands
 map <Leader>vq :VimuxTogglePane<CR>
 map <Leader>vz :VimuxZoomRunner<CR>
-map <silent> <Leader>rb :wa<CR> :RunAllRubyTests<CR>
-map <silent> <Leader>rc :wa<CR> :RunRubyFocusedContext<CR>
-map <silent> <Leader>rf :wa<CR> :RunRubyFocusedTest<CR>
-map <silent> <Leader>rl :wa<CR> :VimuxRunLastCommand<CR>
+map <silent> <Leader>rb :wa<CR> :TestFile<CR>
+map <silent> <Leader>rc :wa<CR> :TestSuite<CR>
+map <silent> <Leader>rf :wa<CR> :TestNearest<CR>
+map <silent> <Leader>rl :wa<CR> :TestLast<CR>
 
 cnoremap <Tab> <C-L><C-D>
 cnoreabbrev W w
