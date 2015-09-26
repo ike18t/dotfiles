@@ -63,6 +63,7 @@ let g:easytags_dynamic_files = 2
 let g:easytags_resolve_links = 1
 let g:easytags_suppress_report = 1
 let g:easytags_auto_highlight = 0
+let g:easytags_async = 1
 
 autocmd FileType ruby runtime ruby_mappings.vim
 imap <C-L> <SPACE>=><SPACE>
@@ -95,7 +96,7 @@ let test#javascript#jasmine#file_pattern = '\v^spec/.*spec(\.js)?\.(js|jsx|coffe
 let test#strategy = "vimux"
 
 " vimux commands
-map <Leader>vq :VimuxTogglePane<CR>
+map <Leader>vt :VimuxTogglePane<CR>
 map <Leader>vz :VimuxZoomRunner<CR>
 map <silent> <Leader>rb :wa<CR> :TestFile<CR>
 map <silent> <Leader>rc :wa<CR> :TestSuite<CR>
@@ -159,7 +160,7 @@ let g:ctrlp_max_height = 20
 let g:ctrlp_clear_cache_on_exit = 0
 if executable('ag')
   " Use Ag over Grep
-  set grepprg=ag\ -o\ --nogroup\ --vimgrep\ --nocolor\ --hidden\ --ignore\ .git\ --ignore\ vendor
+  set grepprg=ag\ -o\ --nogroup\ --vimgrep\ --nocolor\ --hidden\ --ignore\ .git\ --ignore\ vendor\ --ignore\ '*.min.js'
 
   " Use ag in CtrlP for listing files. Lightning fast and respects .gitignore
   let g:ctrlp_user_command = 'ag %s -l --nocolor --hidden --ignore vendor
