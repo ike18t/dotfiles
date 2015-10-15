@@ -18,14 +18,18 @@ set autowrite
 set nobackup
 set nowritebackup
 set noswapfile
-set showcmd       " display incomplete commands
+set showcmd " display incomplete commands
 set history=20
+set wildmenu " visual autocomplete for command menu
 
+set foldenable
 set foldmethod=manual
 set foldlevelstart=20
 
 set ignorecase
 set smartcase
+
+set lazyredraw " redraw only when we need to.
 
 " Switch syntax highlighting on, when the terminal has colors
 " Also switch on highlighting the last used search pattern.
@@ -81,15 +85,18 @@ nnoremap <silent> <LocalLeader>ag :grep! "<C-R><C-W>"<CR>:cw<CR>
 map <silent> <LocalLeader>bd :bufdo :bd<CR>
 map <silent> <LocalLeader>cc :TComment<CR>
 map <silent> <LocalLeader>uc :TComment<CR>
+map <silent> <LocalLeader>ag :Ag '<C-R><C-W>'<CR>
 nnoremap <silent> <LocalLeader><CR> :tabe<CR>
 nnoremap <silent> <LocalLeader>[ :tabp<CR>
 nnoremap <silent> <LocalLeader>] :tabn<CR>
 nnoremap <silent> <LocalLeader><Space> :noh<CR>
 nnoremap <silent> <LocalLeader>ws :%s/\s\+$//<CR>:let @/=''<CR><C-o>
-inoremap jj <ESC>
 nnoremap <F1> <ESC>
 vnoremap <F1> <ESC>
 inoremap <F1> <ESC>
+" move vertically by visual line
+nnoremap j gj
+nnoremap k gk
 
 let test#javascript#jasmine#executable = 'RAILS_ENV=test bundle exec rake spec:javascript'
 let test#javascript#jasmine#file_pattern = '\v^spec/.*spec(\.js)?\.(js|jsx|coffee)$'
@@ -159,9 +166,6 @@ let g:ctrlp_switch_buffer = 1
 let g:ctrlp_max_height = 20
 let g:ctrlp_clear_cache_on_exit = 0
 if executable('ag')
-  " Use Ag over Grep
-  set grepprg=ag\ -o\ --nogroup\ --vimgrep\ --nocolor\ --hidden\ --ignore\ .git\ --ignore\ vendor\ --ignore\ '*.min.js'
-
   " Use ag in CtrlP for listing files. Lightning fast and respects .gitignore
   let g:ctrlp_user_command = 'ag %s -l --nocolor --hidden --ignore vendor
                                                         \ --ignore .git
@@ -215,6 +219,3 @@ nnoremap <C-l> <C-w>l
 " configure syntastic syntax checking to check on open as well as save
 let g:syntastic_check_on_open=1
 let g:syntastic_html_tidy_ignore_errors=[" proprietary attribute \"ng-"]
-
-" bind Ag command
-command! -nargs=+ -complete=file -bar Ag silent! grep! <args>|cwindow|redraw!

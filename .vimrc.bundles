@@ -41,6 +41,7 @@ Plugin 'xolox/vim-misc'
 Plugin 'vim-scripts/easytags.vim'
 Plugin 'wesQ3/vim-windowswap'
 Plugin 'gosukiwi/vim-atom-dark'
+Plugin 'rking/ag.vim'
 
 call vundle#end()
 filetype on
