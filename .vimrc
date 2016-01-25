@@ -40,7 +40,7 @@ endif
 if filereadable(expand("~/.vimrc.bundles"))
   source ~/.vimrc.bundles
 endif
-filetype plugin indent on
+filetype indent plugin on
 
 let g:airline#extensions#tabline#enabled = 1
 let g:airline#extensions#tabline#tab_nr_type = 1
@@ -191,20 +191,6 @@ function! ToggleRelativeNumber()
 endfunction
 nnoremap <silent> <LocalLeader>rr :call ToggleRelativeNumber()<cr>
 
-" Tab completion
-" will insert tab at beginning of line,
-" will use completion if not at beginning
-set wildmode=list:longest,list:full
-function! InsertTabWrapper()
-  let col = col('.') - 1
-  if !col || getline('.')[col - 1] !~ '\k'
-    return "\<tab>"
-  else
-    return "\<c-p>"
-  endif
-endfunction
-inoremap <Tab> <c-r>=InsertTabWrapper()<cr>
-inoremap <S-Tab> <c-n>
 
 " Open new split panes to right and bottom, which feels more natural
 set splitbelow
