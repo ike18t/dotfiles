@@ -30,6 +30,7 @@ brew 'the_silver_searcher'
 brew 'tmux'
 brew 'vim'
 brew 'zsh'
+brew 'maven'
 brew 'caskroom/cask/brew-cask'
 brew 'neovim/neovim/neovim', args: ['HEAD']
 
