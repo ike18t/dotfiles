@@ -35,13 +35,14 @@ Plugin 'tpope/vim-rails'
 Plugin 'tpope/vim-repeat'
 Plugin 'mhinz/vim-signify'
 Plugin 'rodjek/vim-puppet'
-Plugin 'bling/vim-airline'
+Plugin 'vim-airline/vim-airline'
+Plugin 'vim-airline/vim-airline-themes'
 Plugin 'tmux-plugins/vim-tmux-focus-events'
 Plugin 'xolox/vim-misc'
-Plugin 'vim-scripts/easytags.vim'
 Plugin 'wesQ3/vim-windowswap'
 Plugin 'gosukiwi/vim-atom-dark'
 Plugin 'rking/ag.vim'
+Plugin 'leafgarland/typescript-vim'
 
 call vundle#end()
 filetype on

@@ -50,7 +50,7 @@ setopt CORRECT
 export HOMEBREW_SBIN
 export TERM=xterm-256color
 [ -n "$TMUX" ] && export TERM=screen-256color
-export PATH=$PATH:/usr/include:/usr/local/sbin
+export PATH=/usr/local/bin:$PATH:/usr/include:/usr/local/sbin
 export EDITOR=vim
 eval "$(rbenv init -)"
 
