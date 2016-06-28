@@ -43,6 +43,7 @@ Plugin 'wesQ3/vim-windowswap'
 Plugin 'gosukiwi/vim-atom-dark'
 Plugin 'rking/ag.vim'
 Plugin 'leafgarland/typescript-vim'
+Plugin 'ludovicchabant/vim-gutentags'
 
 call vundle#end()
 filetype on

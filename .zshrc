@@ -54,6 +54,7 @@ export PATH=/usr/local/bin:$PATH:/usr/include:/usr/local/sbin
 export EDITOR=vim
 eval "$(rbenv init -)"
 
+source $HOME/.init_iam
 source $HOME/.aliases
 export PATH="$HOME/.jenv/bin:$PATH"
 eval "$(jenv init -)"
