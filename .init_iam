@@ -58,3 +58,8 @@ function iam {
 function ci {
   rake && iam $1 && git push
 }
+
+as() {
+  cmd=$(fc -ln -1q)
+  iam $1 && eval "$cmd"
+}
