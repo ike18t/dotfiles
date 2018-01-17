@@ -37,8 +37,13 @@ if (&t_Co > 2 || has("gui_running")) && !exists("syntax_on")
   syntax on
 endif
 
+" Exception not caught: ALE conflicts with Syntastic. Uninstall it, or disable this warning with `let g:ale_emit_conflict_warnings = 0` in your vimrc file, *before* plugins are loaded.
+" let g:ale_emit_conflict_warnings = 0
 if filereadable(expand("~/.vimrc.bundles"))
   source ~/.vimrc.bundles
+endif
+if filereadable(expand("~/.vimrc.cucumber-js"))
+  source ~/.vimrc.cucumber-js
 endif
 filetype indent plugin on
 
@@ -51,12 +56,10 @@ let html_use_css=1
 let html_number_lines=0
 let html_no_pre=1
 
-let g:ruby_path='/Users/ike/.rbenv/versions/2.2.0'
-let g:rubycomplete_buffer_loading = 1
+" let g:no_html_toolbar = 'yes'
+let NERDTreeShowHidden=1
 
-let g:no_html_toolbar = 'yes'
-
-autocmd FileType ruby runtime ruby_mappings.vim
+" autocmd FileType ruby runtime ruby_mappings.vim
 imap <C-L> <SPACE>=><SPACE>
 map <silent> <LocalLeader>cj :!clj %<CR>
 map <silent> <LocalLeader>nt :NERDTreeToggle<CR>
@@ -71,7 +74,7 @@ nnoremap <silent> <LocalLeader>ag :grep! "<C-R><C-W>"<CR>:cw<CR>
 map <silent> <LocalLeader>bd :bufdo :bd<CR>
 map <silent> <LocalLeader>cc :TComment<CR>
 map <silent> <LocalLeader>uc :TComment<CR>
-map <silent> <LocalLeader>ag :Ag '<C-R><C-W>'<CR>
+map <silent> <LocalLeader>ag :Ag! '<C-R><C-W>'<CR>
 nnoremap <silent> <LocalLeader><CR> :tabe<CR>
 nnoremap <silent> <LocalLeader>[ :tabp<CR>
 nnoremap <silent> <LocalLeader>] :tabn<CR>
@@ -84,9 +87,31 @@ inoremap <F1> <ESC>
 nnoremap j gj
 nnoremap k gk
 
-let test#javascript#jasmine#executable = 'RAILS_ENV=test bundle exec rake spec:javascript'
-let test#javascript#jasmine#file_pattern = '\v^spec/.*spec(\.js)?\.(js|jsx|coffee)$'
+let test#javascript#jasmine#executable = 'npm test'
+let test#javascript#jasmine#file_pattern = '\v^spec/.*spec(\.js)?\.(ts|js|jsx|coffee)$'
 let test#strategy = "vimux"
+
+" let g:deoplete#enable_at_startup = 1
+" " deoplete navigation
+
+autocmd FileType typescript nmap <buffer> <Leader>t : <C-u>echo tsuquyomi#hint()<CR>
+autocmd FileType typescript setl omnifunc=tsuquyomi#complete
+" let g:syntastic_aggregate_errors = 1
+let g:tsuquyomi_disable_quickfix = 1
+let g:tsuquyomi_completion_detail = 1
+let g:tsuquyomi_single_quote_import = 1
+let g:tsuquyomi_javascript_support = 1
+let g:tsuquyomi_ignore_missing_modules = 1
+set completeopt=longest,menuone
+set omnifunc=tsuquyomi#complete
+inoremap .<Tab> .<c-x><c-o>
+imap <expr><C-j>   pumvisible() ? "\<lt>C-n>" : "\<lt>C-j>"
+imap <expr><C-k>   pumvisible() ? "\<lt>C-p>" : "\<lt>C-k>"
+imap <expr><ENTER>   pumvisible() ? "\<lt>C-y>" : "\<lt>Enter>"
+map <silent> <Leader><c-i> :TsuImport<CR>
+
+let g:SuperTabDefaultCompletionType = "<c-x><c-o>"
+let g:SuperTabContextDefaultCompletionType = "<c-x><c-o>"
 
 " vimux commands
 map <Leader>vt :VimuxTogglePane<CR>
@@ -109,6 +134,7 @@ colorscheme atom-dark-256
 " Highlight trailing whitespace
 autocmd InsertEnter * match ExtraWhitespace /\s\+\%#\@<!$/
 autocmd BufRead,InsertLeave * match ExtraWhitespace /\s\+$/
+
 " Set up highlight group & retain through colorscheme changes
 highlight ExtraWhitespace ctermbg=red guibg=red
 autocmd ColorScheme * highlight ExtraWhitespace ctermbg=red guibg=red
@@ -185,5 +211,5 @@ nnoremap <C-h> <C-w>h
 nnoremap <C-l> <C-w>l
 
 " configure syntastic syntax checking to check on open as well as save
-let g:syntastic_check_on_open=1
-let g:syntastic_html_tidy_ignore_errors=[" proprietary attribute \"ng-"]
+" let g:syntastic_check_on_open=1
+" let g:syntastic_html_tidy_ignore_errors=[" proprietary attribute \"ng-"]
