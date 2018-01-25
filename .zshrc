@@ -43,7 +43,10 @@ eval "$(rbenv init -)"
 
 # source $HOME/.init_iam
 source $HOME/.aliases
-source $HOME/.adp_proxy
+if [ -e $HOME/.adp_proxy ]
+then
+  source $HOME/.adp_proxy
+fi
 
 export ANDROID_HOME=/Users/Ike/Development/android-sdks
 export PATH=$PATH:$ANDROID_HOME:$ANDROID_HOME/tools:$ANDROID_HOME/platform-tools
