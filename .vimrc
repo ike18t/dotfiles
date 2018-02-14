@@ -169,10 +169,10 @@ set undoreload=10000 "maximum number lines to save for undo on a buffer reload
 
 " ctrlp settings
 let g:ctrlp_working_path_mode = 'r'
-let g:ctrlp_custom_ignore = {
-    \ 'dir':  '\v[\/]\.?(git|hg|svn|vendor|bundle|tmp|public)$',
-    \ 'file': '\.pyc$\|\.pyo$\|\.rbc$|\.rbo$\|\.class$\|\.o$\|\~$\|^tags$|\.keep$',
-    \ }
+" let g:ctrlp_custom_ignore = {
+"     \ 'dir':  '\v[\/]\.?(git|hg|svn|vendor|bundle|tmp|public)$',
+"     \ 'file': '\.pyc$\|\.pyo$\|\.rbc$|\.rbo$\|\.class$\|\.o$\|\~$\|^tags$|\.keep$',
+"     \ }
 let g:ctrlp_max_files = 0
 let g:ctrlp_switch_buffer = 1
 let g:ctrlp_max_height = 20
@@ -180,6 +180,7 @@ let g:ctrlp_clear_cache_on_exit = 0
 if executable('ag')
   " Use ag in CtrlP for listing files. Lightning fast and respects .gitignore
   let g:ctrlp_user_command = 'ag %s -l --nocolor --hidden --ignore vendor
+                                                        \ --ignore node_modules
                                                         \ --ignore .git
                                                         \ -g ""'
 

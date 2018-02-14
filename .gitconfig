@@ -16,3 +16,5 @@
 	email = ike18t@gmail.com
 [push]
 	default = simple
+[url "https://"]
+	insteadOf = http://
