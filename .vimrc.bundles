@@ -3,8 +3,10 @@ if &compatible
 end
 
 filetype off
-set rtp+=~/.vim/bundle/Vundle.vim/
-call vundle#begin()
+let path = expand('<sfile>:p:h')
+:echom expand(path . '/vundles/Vundle.vim/')
+exec 'set rtp+=' . expand(path . '/vundles/Vundle.vim/')
+call vundle#begin(expand(path . '/vundles/'))
 
 " Let Vundle manage Vundle
 Plugin 'gmarik/Vundle.vim'

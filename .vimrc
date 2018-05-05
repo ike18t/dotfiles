@@ -37,13 +37,15 @@ if (&t_Co > 2 || has("gui_running")) && !exists("syntax_on")
   syntax on
 endif
 
+let path = expand('<sfile>:p:h')
+
 " Exception not caught: ALE conflicts with Syntastic. Uninstall it, or disable this warning with `let g:ale_emit_conflict_warnings = 0` in your vimrc file, *before* plugins are loaded.
 " let g:ale_emit_conflict_warnings = 0
-if filereadable(expand("~/.vimrc.bundles"))
-  source ~/.vimrc.bundles
+if filereadable(expand(path . '/.vimrc.bundles'))
+  exec 'source' . expand(path . '/.vimrc.bundles')
 endif
-if filereadable(expand("~/.vimrc.cucumber-js"))
-  source ~/.vimrc.cucumber-js
+if filereadable(expand(path . '/.vimrc.cucumber-js'))
+  exec 'source' . expand(path . '/.vimrc.cucumber-js')
 endif
 filetype indent plugin on
 
@@ -94,6 +96,7 @@ let test#strategy = "vimux"
 " let g:deoplete#enable_at_startup = 1
 " " deoplete navigation
 
+let g:syntastic_typescript_tsc_fname = ''
 autocmd FileType typescript nmap <buffer> <Leader>t : <C-u>echo tsuquyomi#hint()<CR>
 autocmd FileType typescript setl omnifunc=tsuquyomi#complete
 " let g:syntastic_aggregate_errors = 1
