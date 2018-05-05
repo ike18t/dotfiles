@@ -18,3 +18,5 @@
 	default = simple
 [url "https://"]
 	insteadOf = http://
+[log]
+	follow = true

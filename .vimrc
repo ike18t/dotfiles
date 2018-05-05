@@ -67,16 +67,10 @@ map <silent> <LocalLeader>cj :!clj %<CR>
 map <silent> <LocalLeader>nt :NERDTreeToggle<CR>
 map <silent> <LocalLeader>nr :NERDTree<CR>
 map <silent> <LocalLeader>nf :NERDTreeFind<CR>
-map <silent> <LocalLeader>ff :CtrlP<CR>
-map <silent> <LocalLeader>ft :CtrlPTag<CR>
-map <silent> <LocalLeader>fb :CtrlPBuffer<CR>
-map <silent> <LocalLeader>fr :CtrlPClearAllCache<CR>
 map <silent> <LocalLeader>nh :nohls<CR>
-nnoremap <silent> <LocalLeader>ag :grep! "<C-R><C-W>"<CR>:cw<CR>
 map <silent> <LocalLeader>bd :bufdo :bd<CR>
 map <silent> <LocalLeader>cc :TComment<CR>
 map <silent> <LocalLeader>uc :TComment<CR>
-map <silent> <LocalLeader>ag :Ag! '<C-R><C-W>'<CR>
 nnoremap <silent> <LocalLeader><CR> :tabe<CR>
 nnoremap <silent> <LocalLeader>[ :tabp<CR>
 nnoremap <silent> <LocalLeader>] :tabn<CR>
@@ -91,20 +85,27 @@ nnoremap k gk
 
 let test#javascript#jasmine#executable = 'npm test'
 let test#javascript#jasmine#file_pattern = '\v^spec/.*spec(\.js)?\.(ts|js|jsx|coffee)$'
-let test#strategy = "vimux"
 
-" let g:deoplete#enable_at_startup = 1
-" " deoplete navigation
+set rtp+=/usr/local/opt/fzf
+map <silent> <LocalLeader>ff :Files<CR>
+map <silent> <LocalLeader>fg :GFiles<CR>
+map <silent> <LocalLeader>fG :GFiles?<CR>
+map <silent> <LocalLeader>fb :Buffers<CR>
+map <silent> <LocalLeader>fc :Commits<CR>ap <silent> <LocalLeader>ff :CtrlP<CR>
+
+let test#strategy = "vimux"
 
 let g:syntastic_typescript_tsc_fname = ''
 autocmd FileType typescript nmap <buffer> <Leader>t : <C-u>echo tsuquyomi#hint()<CR>
 autocmd FileType typescript setl omnifunc=tsuquyomi#complete
-" let g:syntastic_aggregate_errors = 1
+autocmd FileType typescript setlocal completeopt+=menu,preview
+let g:syntastic_aggregate_errors = 1
 let g:tsuquyomi_disable_quickfix = 1
 let g:tsuquyomi_completion_detail = 1
 let g:tsuquyomi_single_quote_import = 1
 let g:tsuquyomi_javascript_support = 1
-let g:tsuquyomi_ignore_missing_modules = 1
+let g:tsuquyomi_shortest_import_path = 1
+" let g:tsuquyomi_ignore_missing_modules = 1
 set completeopt=longest,menuone
 set omnifunc=tsuquyomi#complete
 inoremap .<Tab> .<c-x><c-o>
@@ -191,6 +192,20 @@ if executable('ag')
   let g:ctrlp_use_caching = 0
 endif
 
+"-----------
+" Searching
+"-----------
+cnoreabbrev Ag Ack!
+
+set hlsearch
+highlight Search ctermbg=black ctermfg=lightgray
+if executable('ag')
+  let g:ackprg = 'ag --vimgrep'
+endif
+map <LocalLeader>ag :Ack! '<C-R><C-W>'<Paste><Enter>
+
+let $FZF_DEFAULT_COMMAND = 'ag -g ""'
+
 autocmd FocusLost * stopinsert
 autocmd VimResized * :wincmd = " auto resize vim when the window is resized
 
@@ -217,3 +232,7 @@ nnoremap <C-l> <C-w>l
 " configure syntastic syntax checking to check on open as well as save
 " let g:syntastic_check_on_open=1
 " let g:syntastic_html_tidy_ignore_errors=[" proprietary attribute \"ng-"]
+let g:syntastic_typescript_checkers = ['tsuquyomi'] " You shouldn't use 'tsc' checker.
+
+autocmd BufNewFile,BufRead *.jenkins set syntax=groovy
+autocmd BufNewFile,BufRead *.stages set syntax=groovy

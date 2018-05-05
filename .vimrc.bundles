@@ -45,12 +45,14 @@ Plugin 'tmux-plugins/vim-tmux-focus-events'
 Plugin 'xolox/vim-misc'
 Plugin 'wesQ3/vim-windowswap'
 Plugin 'gosukiwi/vim-atom-dark'
-Plugin 'rking/ag.vim'
 Plugin 'Shougo/vimproc.vim'
 Plugin 'Quramy/tsuquyomi'
 Plugin 'HerringtonDarkholme/yats.vim'
-Plugin 'ludovicchabant/vim-gutentags'
+Plugin 'junegunn/fzf.vim'
+Plugin 'mileszs/ack.vim'
+" Plugin 'ludovicchabant/vim-gutentags'
 Plugin 'w0rp/ale'
+" Plugin 'Valloric/YouCompleteMe'
 
 call vundle#end()
 filetype on
