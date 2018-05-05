@@ -1,3 +1,6 @@
+# Comment this out to disable bi-weekly auto-update check for ohmyzsh
+DISABLE_AUTO_UPDATE="true"
+
 # https://github.com/creationix/nvm/issues/1652
 export PATH="/usr/local/bin:$(getconf PATH)"
 
@@ -12,9 +15,6 @@ ZSH_THEME="robbyrussell"
 
 # Set to this to use case-sensitive completion
 # CASE_SENSITIVE="true"
-
-# Comment this out to disable bi-weekly auto-update checks
-DISABLE_AUTO_UPDATE="true"
 
 # Uncomment to change how often before auto-updates occur? (in days)
 # export UPDATE_ZSH_DAYS=13

@@ -1,0 +1,72 @@
+let b:cucumber_root = '~/adp/redbox-spa/redbox_angular/test/e2e'
+if !exists("b:cucumber_steps_glob")
+  let b:cucumber_steps_glob = b:cucumber_root.'/**/*'
+endif
+
+function! s:getallsteps()
+  let step_pattern =  '\/\^.*$\/'
+  let steps = []
+  for file in split(glob(b:cucumber_steps_glob),"\n")
+    let lines = readfile(file)
+    let num = 0
+    for line in lines
+      let num += 1
+      if line =~ step_pattern
+        let type = matchstr(line,'Given\|When\|Then')
+        let steps += [[file, num, type, matchstr(line,step_pattern)]]
+      endif
+    endfor
+  endfor
+  return steps
+endfunction
+
+function! s:stepmatch(pattern,step)
+  if a:pattern =~ '^/.*/$'
+    let pattern = a:pattern[1:-2]
+  else
+    return 0
+  endif
+  try
+    " convert to vim pattern
+    let vimpattern = substitute(substitute(pattern,'\\\@<!(?:','%(','g'),'\\\@<!\*?','{-}','g')
+    " vim doesn't support +?
+    let vimpattern = substitute(vimpattern, '+?', '+', 'g')
+    " \v is for very magic for more normal regex suppot
+    if a:step =~# '\v'.vimpattern
+      return 1
+    endif
+  catch
+    echo vimpattern
+    echo 'Pattern not supported'
+  endtry
+endfunction
+
+let g:cucumberStepPatterns = s:getallsteps()
+
+function! FindStep()
+  let files = []
+  let line = getline('.')
+  " strip whitespace and type
+  let lineTypeStripped = matchend(line, 'Given \|When \|Then ')
+  let line  =  strpart(line, lineTypeStripped)
+  for stepPattern in g:cucumberStepPatterns
+    let hasMatch = s:stepmatch(stepPattern[3],line)
+    if hasMatch
+      let files = add(files, stepPattern)
+    endif
+  endfor
+  if len(files) == 1
+    execute "tabe +" . files[0][1] . " " . files[0][0]
+  else
+    for file in files
+      " only open the zombie one for now
+      " make extensible in the future
+      if file[0] =~ 'zombie'
+        execute "tabe +" . file[1] . " " . file[0]
+      endif
+      echo file
+    endfor
+  endif
+endfunction
+
+nmap ds :call FindStep()<cr>
