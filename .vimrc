@@ -86,14 +86,15 @@ nnoremap k gk
 let test#javascript#jasmine#executable = 'npm test'
 let test#javascript#jasmine#file_pattern = '\v^spec/.*spec(\.js)?\.(ts|js|jsx|coffee)$'
 
-set rtp+=/usr/local/opt/fzf
 map <silent> <LocalLeader>ff :Files<CR>
 map <silent> <LocalLeader>fg :GFiles<CR>
 map <silent> <LocalLeader>fG :GFiles?<CR>
 map <silent> <LocalLeader>fb :Buffers<CR>
 map <silent> <LocalLeader>fc :Commits<CR>ap <silent> <LocalLeader>ff :CtrlP<CR>
 
-let test#strategy = "vimux"
+if executable('tmux')
+  let test#strategy = "vimux"
+endif
 
 let g:syntastic_typescript_tsc_fname = ''
 autocmd FileType typescript nmap <buffer> <Leader>t : <C-u>echo tsuquyomi#hint()<CR>
@@ -120,6 +121,7 @@ let g:SuperTabContextDefaultCompletionType = "<c-x><c-o>"
 " vimux commands
 map <Leader>vt :VimuxTogglePane<CR>
 map <Leader>vz :VimuxZoomRunner<CR>
+
 map <silent> <Leader>rb :wa<CR> :TestFile<CR>
 map <silent> <Leader>rc :wa<CR> :TestSuite<CR>
 map <silent> <Leader>rf :wa<CR> :TestNearest<CR>

@@ -48,6 +48,7 @@ Plugin 'gosukiwi/vim-atom-dark'
 Plugin 'Shougo/vimproc.vim'
 Plugin 'Quramy/tsuquyomi'
 Plugin 'HerringtonDarkholme/yats.vim'
+Plugin 'junegunn/fzf', { 'dir': path, 'do': './install --bin' }
 Plugin 'junegunn/fzf.vim'
 Plugin 'mileszs/ack.vim'
 " Plugin 'ludovicchabant/vim-gutentags'
