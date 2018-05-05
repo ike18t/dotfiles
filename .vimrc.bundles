@@ -4,7 +4,6 @@ end
 
 filetype off
 let path = expand('<sfile>:p:h')
-:echom expand(path . '/vundles/Vundle.vim/')
 exec 'set rtp+=' . expand(path . '/vundles/Vundle.vim/')
 call vundle#begin(expand(path . '/vundles/'))
 
