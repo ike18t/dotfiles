@@ -53,6 +53,7 @@ Plugin 'mileszs/ack.vim'
 " Plugin 'ludovicchabant/vim-gutentags'
 Plugin 'w0rp/ale'
 " Plugin 'Valloric/YouCompleteMe'
+Plugin 'udalov/kotlin-vim'
 
 call vundle#end()
 filetype on
