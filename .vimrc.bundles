@@ -21,7 +21,6 @@ Plugin 'tpope/vim-markdown'
 Plugin 'scrooloose/nerdtree'
 Plugin 'vim-scripts/Toggle-NERDTree-width'
 Plugin 'albfan/nerdtree-git-plugin'
-" Plugin 'scrooloose/syntastic'
 Plugin 'mkitt/tabline.vim'
 Plugin 'tomtom/tcomment_vim'
 Plugin 'vim-ruby/vim-ruby'
@@ -50,10 +49,9 @@ Plugin 'HerringtonDarkholme/yats.vim'
 Plugin 'junegunn/fzf', { 'dir': path, 'do': './install --bin' }
 Plugin 'junegunn/fzf.vim'
 Plugin 'mileszs/ack.vim'
-" Plugin 'ludovicchabant/vim-gutentags'
 Plugin 'w0rp/ale'
-" Plugin 'Valloric/YouCompleteMe'
 Plugin 'udalov/kotlin-vim'
+Plugin 'autozimu/LanguageClient-neovim', { 'build': 'bash install.sh' }
 
 call vundle#end()
 filetype on

@@ -102,23 +102,15 @@ if executable('tmux')
 endif
 
 let g:syntastic_typescript_tsc_fname = ''
-autocmd FileType typescript nmap <buffer> <Leader>t : <C-u>echo tsuquyomi#hint()<CR>
-autocmd FileType typescript setl omnifunc=tsuquyomi#complete
+autocmd FileType typescript setl omnifunc=LanguageClient#complete
+autocmd FileType typescript setl completefunc=LanguageClient#complete
 autocmd FileType typescript setlocal completeopt+=menu,preview
 let g:syntastic_aggregate_errors = 1
-let g:tsuquyomi_disable_quickfix = 1
-let g:tsuquyomi_completion_detail = 1
-let g:tsuquyomi_single_quote_import = 1
-let g:tsuquyomi_javascript_support = 1
-let g:tsuquyomi_shortest_import_path = 1
-" let g:tsuquyomi_ignore_missing_modules = 1
 set completeopt=longest,menuone
-set omnifunc=tsuquyomi#complete
-inoremap .<Tab> .<c-x><c-o>
 imap <expr><C-j>   pumvisible() ? "\<lt>C-n>" : "\<lt>C-j>"
 imap <expr><C-k>   pumvisible() ? "\<lt>C-p>" : "\<lt>C-k>"
 imap <expr><ENTER>   pumvisible() ? "\<lt>C-y>" : "\<lt>Enter>"
-map <silent> <Leader><c-i> :TsuImport<CR>
+" map <silent> <Leader><c-i> :TsuImport<CR>
 
 let g:SuperTabDefaultCompletionType = "<c-x><c-o>"
 let g:SuperTabContextDefaultCompletionType = "<c-x><c-o>"
@@ -180,10 +172,6 @@ set undoreload=10000 "maximum number lines to save for undo on a buffer reload
 
 " ctrlp settings
 let g:ctrlp_working_path_mode = 'r'
-" let g:ctrlp_custom_ignore = {
-"     \ 'dir':  '\v[\/]\.?(git|hg|svn|vendor|bundle|tmp|public)$',
-"     \ 'file': '\.pyc$\|\.pyo$\|\.rbc$|\.rbo$\|\.class$\|\.o$\|\~$\|^tags$|\.keep$',
-"     \ }
 let g:ctrlp_max_files = 0
 let g:ctrlp_switch_buffer = 1
 let g:ctrlp_max_height = 20
@@ -236,11 +224,6 @@ nnoremap <C-k> <C-w>k
 nnoremap <C-h> <C-w>h
 nnoremap <C-l> <C-w>l
 
-" configure syntastic syntax checking to check on open as well as save
-" let g:syntastic_check_on_open=1
-" let g:syntastic_html_tidy_ignore_errors=[" proprietary attribute \"ng-"]
-let g:syntastic_typescript_checkers = ['tsuquyomi'] " You shouldn't use 'tsc' checker.
-
 autocmd BufNewFile,BufRead *.jenkins set syntax=groovy
 autocmd BufNewFile,BufRead *.stages set syntax=groovy
 
@@ -251,3 +234,14 @@ inoremap <A-j> <Esc>:m .+1<CR>==gi
 inoremap <A-k> <Esc>:m .-2<CR>==gi
 vnoremap <A-j> :m '>+1<CR>gv=gv
 vnoremap <A-k> :m '<-2<CR>gv=gv
+
+let g:LanguageClient_serverCommands = {
+      \ 'javascript': ['javascript-typescript-stdio'],
+      \ 'javascript.jsx': ['javascript-typescript-stdio'],
+      \ 'typescript': ['javascript-typescript-stdio'],
+      \ 'kotlin': ['~/Projects/KotlinLanguageServer/build/install/kotlin-language-server/bin/kotlin-language-server'],
+      \ }
+
+let g:LanguageClient_rootMarkers = {
+    \ 'typescript': ['tsconfig.json'],
+    \ }
