@@ -104,13 +104,20 @@ endif
 let g:syntastic_typescript_tsc_fname = ''
 autocmd FileType typescript setl omnifunc=LanguageClient#complete
 autocmd FileType typescript setl completefunc=LanguageClient#complete
-autocmd FileType typescript setlocal completeopt+=menu,preview
+" autocmd FileType typescript setlocal completeopt+=menu,preview
 let g:syntastic_aggregate_errors = 1
-set completeopt=longest,menuone
-imap <expr><C-j>   pumvisible() ? "\<lt>C-n>" : "\<lt>C-j>"
-imap <expr><C-k>   pumvisible() ? "\<lt>C-p>" : "\<lt>C-k>"
-imap <expr><ENTER>   pumvisible() ? "\<lt>C-y>" : "\<lt>Enter>"
+set completeopt=longest,menuone,preview
+" inoremap <expr> <CR> pumvisible() ? "\<C-y>" : "\<C-g>u\<CR>"
+inoremap <expr> <C-j> pumvisible() ? '<C-n>' :
+  \ '<C-n><C-r>=pumvisible() ? "\<lt>Down>" : ""<CR>'
+inoremap <expr> <C-k> pumvisible() ? '<C-p>' :
+  \ '<C-x><C-o><C-n><C-p><C-r>=pumvisible() ? "\<lt>Down>" : ""<CR>'
+
+" inoremap <expr><C-j>   pumvisible() ? "\<lt>C-n>" : "\<lt>C-j>"
+" inoremap <expr><C-k>   pumvisible() ? "\<lt>C-p>" : "\<lt>C-k>"
+" imap <expr><ENTER>   pumvisible() ? "\<lt>C-y>" : "\<lt>Enter>"
 " map <silent> <Leader><c-i> :TsuImport<CR>
+map <silent> <Leader><C-q> :call LanguageClient_textDocument_codeAction()<CR>
 
 let g:SuperTabDefaultCompletionType = "<c-x><c-o>"
 let g:SuperTabContextDefaultCompletionType = "<c-x><c-o>"
@@ -235,13 +242,20 @@ inoremap <A-k> <Esc>:m .-2<CR>==gi
 vnoremap <A-j> :m '>+1<CR>gv=gv
 vnoremap <A-k> :m '<-2<CR>gv=gv
 
+" LanguageClient
 let g:LanguageClient_serverCommands = {
       \ 'javascript': ['javascript-typescript-stdio'],
       \ 'javascript.jsx': ['javascript-typescript-stdio'],
       \ 'typescript': ['javascript-typescript-stdio'],
       \ 'kotlin': ['~/Projects/KotlinLanguageServer/build/install/kotlin-language-server/bin/kotlin-language-server'],
       \ }
-
 let g:LanguageClient_rootMarkers = {
     \ 'typescript': ['tsconfig.json'],
     \ }
+let g:ale_completion_enabled = '1'
+
+nnoremap <F5> :call LanguageClient_contextMenu()<CR>
+" Or map each action separately
+nnoremap <silent> K :call LanguageClient#textDocument_hover()<CR>
+nnoremap <silent> gd :call LanguageClient#textDocument_definition()<CR>
+nnoremap <silent> <F2> :call LanguageClient#textDocument_rename()<CR>
