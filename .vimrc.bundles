@@ -44,7 +44,6 @@ Plugin 'xolox/vim-misc'
 Plugin 'wesQ3/vim-windowswap'
 Plugin 'gosukiwi/vim-atom-dark'
 Plugin 'Shougo/vimproc.vim'
-Plugin 'Quramy/tsuquyomi'
 Plugin 'HerringtonDarkholme/yats.vim'
 Plugin 'junegunn/fzf', { 'dir': path, 'do': './install --bin' }
 Plugin 'junegunn/fzf.vim'
