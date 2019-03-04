@@ -8,3 +8,4 @@ ln -s ~/Projects/dotfiles/.vimrc.bundles ~/.vimrc.bundles
 ln -s ~/Projects/dotfiles/.vimrc ~/.config/nvim/init.vim # neovim
 ln -s ~/Projects/dotfiles/.vimrc.bundles ~/.config/nvim/.vimrc.bundles
 ln -s ~/Projects/dotfiles/.gitconfig ~/.gitconfig
+ln -s ~/Projects/dotfiles/.alacritty.yml ~/.alacritty.yml
