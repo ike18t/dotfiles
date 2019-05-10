@@ -12,7 +12,7 @@ Plugin 'gmarik/Vundle.vim'
 
 " Define bundles via Github repos
 Plugin 'kien/ctrlp.vim'
-Plugin 'ervandew/supertab'
+" Plugin 'ervandew/supertab'
 Plugin 'vim-scripts/Align'
 Plugin 'jlanzarotta/bufexplorer'
 Plugin 'bkad/CamelCaseMotion'
@@ -48,9 +48,9 @@ Plugin 'HerringtonDarkholme/yats.vim'
 Plugin 'junegunn/fzf', { 'dir': path, 'do': './install --bin' }
 Plugin 'junegunn/fzf.vim'
 Plugin 'mileszs/ack.vim'
-Plugin 'w0rp/ale'
+" Plugin 'w0rp/ale'
 Plugin 'udalov/kotlin-vim'
-Plugin 'autozimu/LanguageClient-neovim', { 'build': 'bash install.sh' }
+Plugin 'neoclide/coc.nvim', {'do': { -> coc#util#install()}}
 
 call vundle#end()
 filetype on
