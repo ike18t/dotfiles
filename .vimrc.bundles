@@ -10,6 +10,7 @@ call vundle#begin(expand(path . '/vundles/'))
 " Let Vundle manage Vundle
 Plugin 'gmarik/Vundle.vim'
 
+Plugin 'w0rp/ale'
 Plugin 'scrooloose/nerdtree'
 Plugin 'vim-scripts/Toggle-NERDTree-width'
 Plugin 'albfan/nerdtree-git-plugin'
