@@ -5,3 +5,5 @@ alias be='bundle exec'
 alias updatedb='sudo /usr/libexec/locate.updatedb'
 alias vim='nvim -u ~/Projects/dotfiles/.vimrc'
 alias tmux='\tmux -f ~/Projects/dotfiles/.tmux.conf'
+
+alias sd='cd /Volumes/Manheim/repos/seller_dashboard'

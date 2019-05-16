@@ -10,47 +10,28 @@ call vundle#begin(expand(path . '/vundles/'))
 " Let Vundle manage Vundle
 Plugin 'gmarik/Vundle.vim'
 
-" Define bundles via Github repos
-Plugin 'kien/ctrlp.vim'
-" Plugin 'ervandew/supertab'
-Plugin 'vim-scripts/Align'
-Plugin 'jlanzarotta/bufexplorer'
-Plugin 'bkad/CamelCaseMotion'
-Plugin 'rizzatti/dash.vim'
-Plugin 'tpope/vim-markdown'
 Plugin 'scrooloose/nerdtree'
 Plugin 'vim-scripts/Toggle-NERDTree-width'
 Plugin 'albfan/nerdtree-git-plugin'
 Plugin 'mkitt/tabline.vim'
 Plugin 'tomtom/tcomment_vim'
-Plugin 'vim-ruby/vim-ruby'
 Plugin 'benmills/vimux'
 Plugin 'janko-m/vim-test'
 Plugin 'tpope/vim-surround'
 Plugin 'tpope/vim-fugitive'
-Plugin 'kchmck/vim-coffee-script'
 Plugin 'tpope/vim-cucumber'
-Plugin 'pangloss/vim-javascript'
-Plugin 'tpope/vim-endwise'
-Plugin 'tpope/vim-ragtag'
 Plugin 'tpope/vim-rails'
 Plugin 'tpope/vim-repeat'
 Plugin 'mhinz/vim-signify'
-Plugin 'rodjek/vim-puppet'
 Plugin 'vim-airline/vim-airline'
 Plugin 'vim-airline/vim-airline-themes'
 Plugin 'tmux-plugins/vim-tmux-focus-events'
-Plugin 'xolox/vim-misc'
 Plugin 'wesQ3/vim-windowswap'
 Plugin 'gosukiwi/vim-atom-dark'
-Plugin 'Shougo/vimproc.vim'
-Plugin 'HerringtonDarkholme/yats.vim'
 Plugin 'junegunn/fzf', { 'dir': path, 'do': './install --bin' }
 Plugin 'junegunn/fzf.vim'
-Plugin 'mileszs/ack.vim'
-" Plugin 'w0rp/ale'
-Plugin 'udalov/kotlin-vim'
 Plugin 'neoclide/coc.nvim', {'do': { -> coc#util#install()}}
+Plugin 'sheerun/vim-polyglot'
 
 call vundle#end()
 filetype on
