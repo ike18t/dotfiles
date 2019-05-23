@@ -37,16 +37,12 @@ setopt CORRECT
 export HOMEBREW_SBIN
 export TERM=xterm-256color
 [ -n "$TMUX" ] && export TERM=screen-256color
-export PATH=/usr/local/bin:$PATH:/usr/include:/usr/local/sbin
+export PATH=~/.rbenv/shims:/usr/local/bin:$PATH:/usr/include:/usr/local/sbin
 export EDITOR=vim
 eval "$(rbenv init -)"
 
 # source $HOME/.init_iam
 source $HOME/.aliases
-if [ -e $HOME/.adp_proxy ]
-then
-  source $HOME/.adp_proxy
-fi
 
 export ANDROID_HOME=/Users/Ike/Development/android-sdks
 export PATH=$PATH:$ANDROID_HOME:$ANDROID_HOME/tools:$ANDROID_HOME/platform-tools
@@ -57,21 +53,7 @@ bindkey '^R' history-incremental-search-backward
 export PATH="$HOME/.jenv/bin:$PATH"
 eval "$(jenv init -)"
 
-# export NVM_DIR="$HOME/.nvm"
-# . "$(brew --prefix nvm)/nvm.sh"
-
-declare -a NODE_GLOBALS=(`find ~/.nvm/versions/node -maxdepth 3 -type l -wholename '*/bin/*' | xargs -n1 basename | sort | uniq`)
-
-NODE_GLOBALS+=("node")
-NODE_GLOBALS+=("nvm")
-
-load_nvm () {
-    export NVM_DIR="$HOME/.nvm"
-    . "$(brew --prefix nvm)/nvm.sh"
-}
-
-for cmd in "${NODE_GLOBALS[@]}"; do
-    eval "${cmd}(){ unset -f ${NODE_GLOBALS}; load_nvm; ${cmd} \$@ }"
-done
+export NVM_DIR="$HOME/.nvm"
+. "$(brew --prefix nvm)/nvm.sh"
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
