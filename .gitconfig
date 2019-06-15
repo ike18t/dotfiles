@@ -3,6 +3,7 @@
   st = status
 [color]
 	ui = auto
+  diff = always
   pager = true
 [color "status"]
   added = yellow
