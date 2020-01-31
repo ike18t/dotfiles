@@ -7,5 +7,3 @@ alias vim='\nvim -u ~/Projects/dotfiles/.vimrc'
 alias nvim='\nvim -u ~/Projects/dotfiles/.vimrc'
 alias tmux='\tmux -f ~/Projects/dotfiles/.tmux.conf'
 alias ls='ls -G'
-
-alias sd='cd /Volumes/Manheim/repos/seller_dashboard'
