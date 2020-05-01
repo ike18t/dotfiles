@@ -6,3 +6,4 @@ ln -s ~/Projects/dotfiles/.tmux.conf ~/.tmux.conf
 ln -s ~/Projects/dotfiles/.vimrc* ~
 ln -s ~/Projects/dotfiles/.gitconfig ~/.gitconfig
 ln -s ~/Projects/dotfiles/.alacritty.yml ~/.alacritty.yml
+ln -s ~/Library/Mobile\ Documents/com~apple~CloudDocs ~/iCloud
