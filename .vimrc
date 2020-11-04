@@ -153,12 +153,15 @@ set undoreload=10000 "maximum number lines to save for undo on a buffer reload
 set hlsearch
 highlight Search ctermbg=black ctermfg=lightgray
 
-if executable('ag')
-  set grepprg=ag\ --nogroup\ --nocolor
-  command -nargs=+ -complete=file -bar Ag silent! grep! <args>|cwindow|redraw!
-  map <LocalLeader>ag :Ag '<C-R><C-W>'<Paste><Enter>
-  let $FZF_DEFAULT_COMMAND = 'ag -g ""'
-endif
+let $FZF_DEFAULT_COMMAND = 'ag -g "" -p "$(git rev-parse --is-inside-work-tree &>/dev/null && echo "$(git rev-parse --show-toplevel)/.gitignore")" "$@"'
+
+nnoremap <leader>ag :Grepper -tool ag -cword -noprompt<cr>
+runtime plugin/grepper.vim
+let g:grepper.ag.grepprg .= ' -p "$(git rev-parse --is-inside-work-tree &>/dev/null && echo "$(git rev-parse --show-toplevel)/.gitignore")" --smart-case'
+cnoreabbrev Ag GrepperAg
+
+nnoremap ; :
+vnoremap ; :
 
 autocmd FocusLost * stopinsert
 autocmd VimResized * :wincmd = " auto resize vim when the window is resized

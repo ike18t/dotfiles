@@ -32,6 +32,7 @@ Plugin 'junegunn/fzf', { 'dir': path, 'do': './install --bin' }
 Plugin 'junegunn/fzf.vim'
 Plugin 'neoclide/coc.nvim', {'do': { -> coc#util#install()}}
 Plugin 'sheerun/vim-polyglot'
+Plugin 'mhinz/vim-grepper'
 
 call vundle#end()
 filetype on
