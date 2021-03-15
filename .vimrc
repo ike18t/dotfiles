@@ -38,14 +38,25 @@ let path = expand('<sfile>:p:h')
 if filereadable(expand(path . '/.vimrc.bundles'))
   exec 'source' . expand(path . '/.vimrc.bundles')
 endif
-if filereadable(expand(path . '/.vimrc.cucumber-js'))
-  exec 'source' . expand(path . '/.vimrc.cucumber-js')
-endif
-if filereadable(expand(path . '/.vimrc.coc'))
-  exec 'source' . expand(path . '/.vimrc.coc')
+
+if filereadable(expand(path . '/.vimrc.lsp'))
+  exec 'source' . expand(path . '/.vimrc.lsp')
 endif
 
-filetype indent plugin on
+if filereadable(expand(path . '/.vimrc.treesitter'))
+  exec 'source' . expand(path . '/.vimrc.treesitter')
+endif
+
+if filereadable(expand(path . '/.vimrc.ale'))
+  exec 'source' . expand(path . '/.vimrc.ale')
+endif
+
+if filereadable(expand(path . '/.vimrc.telescope'))
+  exec 'source' . expand(path . '/.vimrc.telescope')
+endif
+
+
+filetype plugin on
 
 let g:airline#extensions#tabline#enabled = 1
 let g:airline#extensions#tabline#tab_nr_type = 1
@@ -56,14 +67,13 @@ let html_use_css=1
 let html_number_lines=0
 let html_no_pre=1
 
-" let g:no_html_toolbar = 'yes'
-let NERDTreeShowHidden=1
-
 imap <C-L> <SPACE>=><SPACE>
+
 map <silent> <LocalLeader>cj :!clj %<CR>
-map <silent> <LocalLeader>nt :NERDTreeToggle<CR>
-map <silent> <LocalLeader>nr :NERDTree<CR>
-map <silent> <LocalLeader>nf :NERDTreeFind<CR>
+map <silent> <LocalLeader>nt :NvimTreeToggle<CR>
+map <silent> <LocalLeader>nf :NvimTreeFindFile<CR>
+set termguicolors
+
 map <silent> <LocalLeader>nh :nohls<CR>
 map <silent> <LocalLeader>bd :bufdo :bd<CR>
 map <silent> <LocalLeader>cc :TComment<CR>
@@ -83,17 +93,27 @@ nnoremap k gk
 let test#javascript#jasmine#executable = 'npm test'
 let test#javascript#jasmine#file_pattern = '\v^spec/.*spec(\.js)?\.(ts|js|jsx|coffee)$'
 
-map <silent> <LocalLeader>ff :Files<CR>
-map <silent> <LocalLeader>fg :GFiles<CR>
-map <silent> <LocalLeader>fG :GFiles?<CR>
-map <silent> <LocalLeader>fb :Buffers<CR>
-map <silent> <LocalLeader>fc :Commits<CR>ap <silent> <LocalLeader>ff :CtrlP<CR>
+set completeopt=menuone,noselect
+
+inoremap <silent><expr> <C-Space> compe#complete()
+inoremap <silent><expr> <CR>      compe#confirm('<CR>')
+inoremap <silent><expr> <C-e>     compe#close('<C-e>')
+inoremap <silent><expr> <C-f>     compe#scroll({ 'delta': +4 })
+inoremap <silent><expr> <C-d>     compe#scroll({ 'delta': -4 })
+
+set omnifunc=syntaxcomplete#Complete
+inoremap <expr> <C-J> pumvisible() ? "\<C-N>" : "\<C-J>"
+inoremap <expr> <C-K> pumvisible() ? "\<C-P>" : "\<C-K>"
+
+" Find files using Telescope command-line sugar.
+nnoremap <leader>fg <cmd>Telescope git_files<cr>
+nnoremap <leader>ff :lua require('telescope.builtin').find_files({ find_command = { 'rg', '--smart-case', '--files', '--hidden', '--follow' } })<CR>
+nnoremap <leader>fb <cmd>Telescope buffers<cr>
+nnoremap <leader>fh <cmd>Telescope help_tags<cr>
 
 if executable('tmux')
   let test#strategy = "vimux"
 endif
-
-set completeopt=longest,menuone,preview
 
 " vimux commands
 map <Leader>vt :VimuxTogglePane<CR>
@@ -153,13 +173,6 @@ set undoreload=10000 "maximum number lines to save for undo on a buffer reload
 set hlsearch
 highlight Search ctermbg=black ctermfg=lightgray
 
-let $FZF_DEFAULT_COMMAND = 'ag -g "" -p "$(git rev-parse --is-inside-work-tree &>/dev/null && echo "$(git rev-parse --show-toplevel)/.gitignore")" "$@"'
-
-nnoremap <leader>ag :Grepper -tool ag -cword -noprompt<cr>
-runtime plugin/grepper.vim
-let g:grepper.ag.grepprg .= ' -p "$(git rev-parse --is-inside-work-tree &>/dev/null && echo "$(git rev-parse --show-toplevel)/.gitignore")" --smart-case'
-cnoreabbrev Ag GrepperAg
-
 nnoremap ; :
 vnoremap ; :
 
@@ -195,3 +208,33 @@ vnoremap <A-k> :m '<-2<CR>gv=gv
 
 hi NonText ctermbg=none
 hi Normal guibg=NONE ctermbg=NONE
+
+autocmd CursorHold,CursorHoldI * lua require'nvim-lightbulb'.update_lightbulb()
+
+nnoremap <silent><leader>ca <cmd>lua require('lspsaga.codeaction').code_action()<CR>
+vnoremap <silent><leader>ca <cmd>'<,'>lua require('lspsaga.codeaction').range_code_action()<CR>
+
+lua <<EOF
+  require 'colorizer'.setup()
+
+  local tree_cb = require'nvim-tree.config'.nvim_tree_callback
+  vim.g.nvim_tree_bindings = {
+    ["s"]          = tree_cb("vsplit"),
+  }
+
+  require('lspkind').init({
+      with_text = false
+  })
+EOF
+
+" nvim-lua/completion-nvim
+autocmd BufEnter * lua require'completion'.on_attach()
+" Use <Tab> and <S-Tab> to navigate through popup menu
+inoremap <expr> <Tab>   pumvisible() ? "\<C-n>" : "\<Tab>"
+inoremap <expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<S-Tab>"
+
+" Set completeopt to have a better completion experience
+set completeopt=menuone,noinsert,noselect
+
+" Avoid showing message extra message when using completion
+set shortmess+=c

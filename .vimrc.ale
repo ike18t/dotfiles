@@ -1,0 +1,33 @@
+let g:ale_fix_on_save = 1
+let g:ale_javascript_prettier_use_local_config = 1
+
+function! s:PRETTIER_OPTIONS()
+  return '--config-precedence prefer-file --single-quote --no-bracket-spacing --prose-wrap always --arrow-parens always --trailing-comma all --no-semi --end-of-line  lf --print-width ' . &textwidth
+endfunction
+let g:ale_javascript_prettier_options = <SID>PRETTIER_OPTIONS()
+
+augroup ALE
+  au!
+  " Auto update the option when textwidth is dynamically set or changed in a ftplugin file
+  au! OptionSet textwidth let g:ale_javascript_prettier_options = <SID>PRETTIER_OPTIONS()
+augroup END
+
+let g:ale_fixers = {
+      \   '*'         : ['remove_trailing_lines', 'trim_whitespace'],
+      \   'markdown'  : ['prettier'],
+      \   'javascript': ['prettier'],
+      \   'typescript': ['prettier'],
+      \   'css'       : ['prettier'],
+      \   'json'      : ['prettier'],
+      \   'scss'      : ['prettier'],
+      \   'less'      : ['prettier'],
+      \   'yaml'      : ['prettier'],
+      \   'graphql'   : ['prettier'],
+      \   'html'      : ['prettier'],
+      \   'reason'    : ['refmt'],
+      \   'python'    : ['black'],
+      \   'sh'        : ['shfmt'],
+      \   'bash'      : ['shfmt'],
+      \   'rust'      : ['rustfmt'],
+      \   'go'        : ['gofmt'],
+      \}
