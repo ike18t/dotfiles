@@ -70,8 +70,11 @@ let html_no_pre=1
 imap <C-L> <SPACE>=><SPACE>
 
 map <silent> <LocalLeader>cj :!clj %<CR>
-map <silent> <LocalLeader>nt :NvimTreeToggle<CR>
-map <silent> <LocalLeader>nf :NvimTreeFindFile<CR>
+
+let NERDTreeShowHidden=1
+map <silent> <LocalLeader>nt :NERDTreeToggle<CR>
+map <silent> <LocalLeader>nr :NERDTree<CR>
+map <silent> <LocalLeader>nf :NERDTreeFind<CR>
 set termguicolors
 
 map <silent> <LocalLeader>nh :nohls<CR>
@@ -216,11 +219,6 @@ vnoremap <silent><leader>ca <cmd>'<,'>lua require('lspsaga.codeaction').range_co
 
 lua <<EOF
   require 'colorizer'.setup()
-
-  local tree_cb = require'nvim-tree.config'.nvim_tree_callback
-  vim.g.nvim_tree_bindings = {
-    ["s"]          = tree_cb("vsplit"),
-  }
 
   require('lspkind').init({
       with_text = false

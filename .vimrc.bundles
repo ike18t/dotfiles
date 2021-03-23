@@ -11,7 +11,9 @@ call vundle#begin(expand(path . '/vundles/'))
 Plugin 'gmarik/Vundle.vim'
 
 Plugin 'dense-analysis/ale'
-Plugin 'kyazdani42/nvim-tree.lua'
+Plugin 'scrooloose/nerdtree'
+Plugin 'vim-scripts/Toggle-NERDTree-width'
+Plugin 'tiagofumo/vim-nerdtree-syntax-highlight'
 Plugin 'norcalli/nvim-colorizer.lua'
 Plugin 'mkitt/tabline.vim'
 Plugin 'tomtom/tcomment_vim'
