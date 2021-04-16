@@ -37,6 +37,7 @@ setopt CORRECT
 export HOMEBREW_SBIN
 export TERM=xterm-256color
 [ -n "$TMUX" ] && export TERM=screen-256color
+export COLORTERM="truecolor"
 export PATH=~/.rbenv/shims:/usr/local/bin:$PATH:/usr/include:/usr/local/sbin
 export EDITOR=vim
 eval "$(rbenv init -)"
@@ -58,3 +59,4 @@ export NVM_DIR="$HOME/.nvm"
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 [ -f ~/.zshrc.local ] && source ~/.zshrc.local
+export PATH="/usr/local/sbin:$PATH"

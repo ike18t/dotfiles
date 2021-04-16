@@ -10,9 +10,10 @@ call vundle#begin(expand(path . '/vundles/'))
 " Let Vundle manage Vundle
 Plugin 'gmarik/Vundle.vim'
 
-Plugin 'w0rp/ale'
+Plugin 'dense-analysis/ale'
 Plugin 'scrooloose/nerdtree'
 Plugin 'vim-scripts/Toggle-NERDTree-width'
+Plugin 'tiagofumo/vim-nerdtree-syntax-highlight'
 Plugin 'mkitt/tabline.vim'
 Plugin 'tomtom/tcomment_vim'
 Plugin 'benmills/vimux'
@@ -33,6 +34,8 @@ Plugin 'junegunn/fzf.vim'
 Plugin 'neoclide/coc.nvim', {'do': { -> coc#util#install()}}
 Plugin 'sheerun/vim-polyglot'
 Plugin 'mhinz/vim-grepper'
+Plugin 'kyazdani42/nvim-web-devicons'
+Plugin 'ryanoasis/vim-devicons'
 
 call vundle#end()
 filetype on
