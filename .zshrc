@@ -1,5 +1,5 @@
 # Comment this out to disable bi-weekly auto-update check for ohmyzsh
-DISABLE_AUTO_UPDATE="true"
+# DISABLE_AUTO_UPDATE="true"
 
 # https://github.com/creationix/nvm/issues/1652
 export PATH="/usr/local/bin:$(getconf PATH)"
@@ -38,25 +38,15 @@ export HOMEBREW_SBIN
 export TERM=xterm-256color
 [ -n "$TMUX" ] && export TERM=screen-256color
 export COLORTERM="truecolor"
-export PATH=~/.rbenv/shims:/usr/local/bin:$PATH:/usr/include:/usr/local/sbin
 export EDITOR=vim
-eval "$(rbenv init -)"
 
-# source $HOME/.init_iam
 source $HOME/.aliases
-
-export ANDROID_HOME=/Users/Ike/Development/android-sdks
-export PATH=$PATH:$ANDROID_HOME:$ANDROID_HOME/tools:$ANDROID_HOME/platform-tools
 
 set -o vi
 bindkey '^R' history-incremental-search-backward
 
-export PATH="$HOME/.jenv/bin:$PATH"
-eval "$(jenv init -)"
-
-export NVM_DIR="$HOME/.nvm"
-. "$(brew --prefix nvm)/nvm.sh"
-
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 [ -f ~/.zshrc.local ] && source ~/.zshrc.local
 export PATH="/usr/local/sbin:$PATH"
+
+eval "$(/usr/local/bin/mise activate zsh)"

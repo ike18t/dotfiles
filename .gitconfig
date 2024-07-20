@@ -1,4 +1,5 @@
 [alias]
+  amend = commit --amend --no-edit
   co = checkout
   st = status
 [color]
@@ -17,7 +18,10 @@
 	email = ike18t@gmail.com
 [push]
 	default = simple
+	autoSetupRemote = true
 [url "https://"]
 	insteadOf = http://
 [log]
 	follow = true
+[init]
+	defaultBranch = main

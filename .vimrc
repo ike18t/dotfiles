@@ -38,9 +38,6 @@ let path = expand('<sfile>:p:h')
 if filereadable(expand(path . '/.vimrc.bundles'))
   exec 'source' . expand(path . '/.vimrc.bundles')
 endif
-if filereadable(expand(path . '/.vimrc.cucumber-js'))
-  exec 'source' . expand(path . '/.vimrc.cucumber-js')
-endif
 if filereadable(expand(path . '/.vimrc.coc'))
   exec 'source' . expand(path . '/.vimrc.coc')
 endif
@@ -196,3 +193,5 @@ vnoremap <A-k> :m '<-2<CR>gv=gv
 
 hi NonText ctermbg=none
 hi Normal guibg=NONE ctermbg=NONE
+
+set cmdheight=1

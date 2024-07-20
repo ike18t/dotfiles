@@ -20,7 +20,6 @@ Plugin 'benmills/vimux'
 Plugin 'janko-m/vim-test'
 Plugin 'tpope/vim-surround'
 Plugin 'tpope/vim-fugitive'
-Plugin 'tpope/vim-cucumber'
 Plugin 'tpope/vim-rails'
 Plugin 'tpope/vim-repeat'
 Plugin 'mhinz/vim-signify'
@@ -36,6 +35,9 @@ Plugin 'sheerun/vim-polyglot'
 Plugin 'mhinz/vim-grepper'
 Plugin 'kyazdani42/nvim-web-devicons'
 Plugin 'ryanoasis/vim-devicons'
+Plugin 'iamcco/markdown-preview.nvim'
+Plugin 'github/copilot.vim'
+Plugin 'mfussenegger/nvim-dap'
 
 call vundle#end()
 filetype on
