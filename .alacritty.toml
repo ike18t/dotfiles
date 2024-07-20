@@ -1,0 +1,80 @@
+live_config_reload = true
+
+[bell]
+animation = "EaseOutExpo"
+color = "0xffffff"
+duration = 0
+
+[colors]
+draw_bold_text_with_bright_colors = true
+
+[colors.bright]
+black = "0x666666"
+blue = "0x7aa6da"
+cyan = "0x54ced6"
+green = "0x9ec400"
+magenta = "0xb77ee0"
+red = "0xff3334"
+white = "0xffffff"
+yellow = "0xe7c547"
+
+[colors.normal]
+black = "0x000000"
+blue = "0x7aa6da"
+cyan = "0x70c0ba"
+green = "0x96f705"
+magenta = "0xc397d8"
+red = "0xd54e53"
+white = "0xeaeaea"
+yellow = "0xe6c547"
+
+[colors.primary]
+background = "0x000000"
+foreground = "0xeaeaea"
+
+[env]
+TERM = "xterm-256color"
+
+[font]
+size = 13.0
+
+[font.bold]
+family = "Hack Nerd Font"
+style = "Bold"
+
+[font.italic]
+family = "Hack Nerd Font"
+style = "Italic"
+
+[font.normal]
+family = "Hack Nerd Font"
+style = "Regular"
+
+[[keyboard.bindings]]
+key = "N"
+mods = "Command"
+
+[keyboard.bindings.command]
+args = ["-n", "/Applications/Alacritty.app"]
+program = "open"
+
+[mouse]
+hide_when_typing = true
+
+[scrolling]
+history = 100000
+
+[shell]
+args = ["--login"]
+program = "/usr/local/bin/zsh"
+
+[window]
+dynamic_padding = true
+opacity = 0.85
+decorations = "full"
+dynamic_title = true
+# decorations = "buttonless"
+
+[window.padding]
+x = 0
+y = 0
