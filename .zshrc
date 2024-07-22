@@ -2,7 +2,7 @@
 # DISABLE_AUTO_UPDATE="true"
 
 # https://github.com/creationix/nvm/issues/1652
-export PATH="/usr/local/bin:$(getconf PATH)"
+export PATH="/usr/local/bin:/opt/homebrew/bin:$(getconf PATH)"
 
 # Path to your oh-my-zsh configuration.
 ZSH=$HOME/.oh-my-zsh

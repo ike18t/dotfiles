@@ -15,6 +15,10 @@ function weather {
     local value="$(tail -r -1 /tmp/wttr)\n"
   fi
 
+  if [[ $value =~ "Unknown location" ]]; then
+    return
+  fi
+
   if [[ $value =~ [0-9]+ ]]; then
     local temp=${BASH_REMATCH[0]}
   fi

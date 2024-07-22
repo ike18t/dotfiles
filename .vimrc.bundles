@@ -30,7 +30,7 @@ Plugin 'wesQ3/vim-windowswap'
 Plugin 'gosukiwi/vim-atom-dark'
 Plugin 'junegunn/fzf', { 'dir': path, 'do': './install --bin' }
 Plugin 'junegunn/fzf.vim'
-Plugin 'neoclide/coc.nvim', {'do': { -> coc#util#install()}}
+Plugin 'neoclide/coc.nvim', {'branch': 'release'}
 Plugin 'sheerun/vim-polyglot'
 Plugin 'mhinz/vim-grepper'
 Plugin 'kyazdani42/nvim-web-devicons'
