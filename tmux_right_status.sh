@@ -7,7 +7,7 @@ function weather {
   local delta=$(($current_time - $previous_update))
 
   if [ -z "$previous_update" ] || [ $delta -ge $update_interval ]; then
-    local value=$(curl -s "wttr.in?u&format=%c%t" | sed "s/ +//g")
+    local value=$(curl -s "wttr.in/Irvine?u&format=%c%t" | sed "s/ +//g")
 
     echo "$current_time" > /tmp/wttr
     echo "$value" >> /tmp/wttr

@@ -195,3 +195,8 @@ hi NonText ctermbg=none
 hi Normal guibg=NONE ctermbg=NONE
 
 set cmdheight=1
+
+if exists('$TMUX')
+  autocmd BufEnter,FocusGained * call system("tmux rename-window " . system("pwd | xargs basename"))
+  autocmd VimLeave * call system("tmux rename-window zsh")
+endif
