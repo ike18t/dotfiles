@@ -39,3 +39,10 @@ if vim.env.TMUX then
     desc = 'Restore tmux window name to "zsh" on exit',
   })
 end
+
+vim.api.nvim_create_autocmd({ "BufNewFile", "BufRead" }, {
+  pattern = "*.puml",
+  callback = function()
+    vim.o.filetype = "markdown"
+  end,
+})
